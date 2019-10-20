@@ -166,23 +166,12 @@ var globalController = (function(cardCtrl, UICtrl) {
           event.target.parentNode.parentNode.parentNode.parentNode.parentNode
             .id;
         let card = event.target.parentNode.parentNode.parentNode.parentNode;
-        let CardID =
-          event.target.parentNode.parentNode.parentNode.parentNode.id;
-        let cardClass = event.target.parentNode.parentNode.parentNode;
-        console.log(card, cardClass);
         if (card.classList.contains("active")) {
           splitID = itemID.split("__");
-          ID = splitID[1];
-          if (ID !== "" && !isNaN(ID)) {
+          let selectedCard = splitID[1];
+          if (selectedCard !== "" && !isNaN(selectedCard)) {
             // Set ID to URL
-            location.href = "./contentView.html?" + ID;
-          }
-        } else if (cardClass.classList.contains("active")) {
-          splitID = CardID.split("__");
-          ID = splitID[1];
-          if (ID !== "" && !isNaN(ID)) {
-            // Set ID to URL
-            location.href = "./contentView.html?" + ID;
+            location.href = "./contentView.html?" + selectedCard;
           }
         }
       });
