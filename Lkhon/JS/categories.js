@@ -181,7 +181,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     let cardItem = cardCtrl.addCard(
-      `./images/lakhon-khol.jpg`,
+      `../images/lakhon-khol.jpg`,
       "ល្ខោនខោល",
       "ល្ខោនខោល ឬ ល្ខោនពាក់របាំងមុខ គឺជាល្ខោនមួយដែលមានលក្ខណៈចំណាស់របស់កម្ពុជា...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -193,7 +193,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/basac.jpg`,
+      `../images/basac.jpg`,
       "ល្ខោនបាសាក់",
       "ល្ខោន​បាសាក់​មាន​ដើម​កំណើត​នៅ​ស្រុក​បាសាក់​ខេត្ត​ឃ្លាំង​ទល់​មុខ​ព្រះ​ត្រពាំង​កម្ពុជា​ក្រោម...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -205,7 +205,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/sbek__thom.jpg`,
+      `../images/sbek__thom.jpg`,
       "ល្ខោនស្រមោលស្បែកធំ",
       "ល្ខោនស្បែកធំ គឺជាល្ខោនដែលមានវ័យចំណាស់បំផុត ក្នុងប្រទេសកម្ពុជាដែលអាចជាសំណល់ ពីសម័យបុរាណ...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -217,7 +217,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/sbek__touch.jpg`,
+      `../images/sbek__touch.jpg`,
       "ល្ខោនស្រមោលស្បែកតូច",
       "ល្ខោនស្បែកតូច ត្រូវបានគេស្គាល់ក្នុងភូមិកំពង់តាយ៉ុង ខេត្តសៀមរាប។ តុក្កតាធ្វើពីស្បែកសត្វស្លាប់ ដៃនិងជើងអាចធ្វើចលនា...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -229,7 +229,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/MoHory.jpg`,
+      `../images/MoHory.jpg`,
       "ល្ខោនមហោរី",
       "ល្ខោនមហោរី គឺជាសិល្បៈចំណាស់ និងជាទម្រង់នៃរបាំ ដែលបានបង្កើតនៅក្នុងឆ្នាំ១៩៦០ ដោយ ផ្អែកទៅលើចម្រៀងមហោរី ការរាំ និងការនិយាយគ្នា។",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -241,7 +241,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/Yii-Ke.jpg`,
+      `../images/Yii-Ke.jpg`,
       "ល្ខោនយីកេ",
       "យីកេ គឺជា ទម្រង់នៃប្រភេទ តន្រ្តីផង ល្ខោនផង ព្រមទាំង ជា របាំផង...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -253,7 +253,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/PolSrey.jpg`,
+      `../images/PolSrey.jpg`,
       "ល្ខោនពោលស្រី",
       " ល្ខោនពោលស្រីជាកូនបង្កើតល្ខោនព្រះរាជទ្រព្យ ល្ខោនពោលស្រី គឺជាទម្រង់ល្ខោនច្រៀងរាំបុរាណមួយដែលមានលក្ខណៈស្រដៀងគ្នានឹងសិល្បៈល្ខោនក្បាច់បុរាណដែរ...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"
@@ -265,7 +265,7 @@ var globalController = (function(cardCtrl, UICtrl) {
 
     // 1. add card to list
     cardItem = cardCtrl.addCard(
-      `./images/Niyey.jpg`,
+      `../images/Niyey.jpg`,
       "ល្ខោននិយាយ",
       " ល្ខោននិយាយជាល្ខោនបែបទំនើបមួយដែលផ្ដោតលើទេពកោសល្យក្នុងការប្រើប្រាស់ពាក្យសម្ដីឆ្លើយឆ្លង...",
       "ក្រសួងវប្បធម៌ និង វិចិត្រសិល្បៈ"

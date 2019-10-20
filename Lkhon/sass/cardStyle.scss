@@ -89,7 +89,6 @@ svg {
   min-width: 300px;
   min-height: 400px;
   margin: 4px;
-  -webkit-perspective: 1000px;
   perspective: 1000px;
   .card {
     display: inline-block;
@@ -112,9 +111,6 @@ svg {
     }
     &:hover {
       transform: translateZ(0px);
-    }
-    &:hover:after {
-      opacity: 1;
     }
     .side {
       backface-visibility: hidden;
@@ -186,18 +182,14 @@ svg {
         cursor: pointer;
       }
       .btn:hover h4 {
-        -webkit-transform: translateX(0px);
         transform: translateX(0px);
       }
       .btn:hover svg {
-        -webkit-transform: translateX(0px);
         transform: translateX(0px);
         opacity: 1;
       }
       .btn h4 {
-        -webkit-transform: translateX(12px);
         transform: translateX(12px);
-        -webkit-transition: -webkit-transform 0.3s ease-out;
         transition: -webkit-transform 0.3s ease-out;
         transition: transform 0.3s ease-out;
         transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
@@ -212,7 +204,6 @@ svg {
       }
     }
   }
-  
 }
 
 .active {
@@ -221,29 +212,3 @@ svg {
     display: none;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

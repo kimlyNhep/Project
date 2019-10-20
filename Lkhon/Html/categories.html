@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./cardStyle.css" />
+    <link rel="stylesheet" href="../sass/cardStyle.css" />
     <link
       rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <title>Categories</title>
   </head>
@@ -23,7 +23,9 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span>
+          <img src="../icons/Menu__icon.png" alt="" />
+        </span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -31,9 +33,7 @@
             <a class="nav-link" href="index.html">ទំព័រដើម </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"
-              >ប្រភេទល្ខោន<span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="categories.html">ប្រភេទល្ខោន</a>
           </li>
         </ul>
       </div>
@@ -43,6 +43,8 @@
         add card html
       -->
     </section>
-    <script src="./categories.js"></script>
+    <script src="../JS/categories.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
