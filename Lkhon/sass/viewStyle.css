@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
@@ -82,7 +82,7 @@ body {
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   font-family: "Moulpali", cursive;
   font-weight: bold;
   font-size: 27px;
@@ -113,7 +113,7 @@ body {
 
 #footer {
   background-color: #343a40;
-  padding: 15px 0 0 0;
+  padding: 20px 0 0 0;
   color: #abaaab;
   border-radius: 12px;
   font-family: "Siemreap", cursive;
@@ -132,13 +132,13 @@ body {
 ​p {
   display: block;
   -webkit-margin-before: 1em;
-          margin-block-start: 1em;
+  margin-block-start: 1em;
   -webkit-margin-after: 1em;
-          margin-block-end: 1em;
+  margin-block-end: 1em;
   -webkit-margin-start: 0px;
-          margin-inline-start: 0px;
+  margin-inline-start: 0px;
   -webkit-margin-end: 0px;
-          margin-inline-end: 0px;
+  margin-inline-end: 0px;
 }
 
 #footer .copyright p.small {
