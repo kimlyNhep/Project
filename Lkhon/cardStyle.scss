@@ -116,7 +116,7 @@ svg {
     &:hover:after {
       opacity: 1;
     }
-    & .side {
+    .side {
       backface-visibility: hidden;
       position: absolute;
       width: 100%;
@@ -124,13 +124,13 @@ svg {
       border-radius: 5px;
       background-color: white;
     }
-    & .front {
+    .front {
       z-index: 2;
     }
-    & .back {
+    .back {
       transform: rotateY(180deg);
     }
-    & .info {
+    .info {
       padding: 16px;
     }
     //Front side
