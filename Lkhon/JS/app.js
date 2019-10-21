@@ -23,4 +23,15 @@ $(document).ready(function() {
       $("body, html").animate({ scrollTop: scrollTo + "px" }, 800);
     }
   });
+  $("#img-id").hover(function() {
+    var img = document.getElementById("img-id");
+    //or however you get a handle to the IMG
+    var height = img.height;
+    console.log(height);
+    $(".icon-container").css("top", height / 2 + 220);
+    $(".icon-container").css("display", "flex");
+  });
+  $("#img-id").mouseleave(function() {
+    $(".icon-container").css("display", "none");
+  });
 });
