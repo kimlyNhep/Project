@@ -1,0 +1,14 @@
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.csprojAssemblyReference.cache
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.csproj.CoreCompileInputs.cache
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.RazorAssemblyInfo.cache
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.RazorAssemblyInfo.cs
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.AssemblyInfoInputs.cache
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.AssemblyInfo.cs
+d:\Website\Project\arttech\artTechAPI\bin\Debug\netcoreapp2.2\artTechAPI.deps.json
+d:\Website\Project\arttech\artTechAPI\bin\Debug\netcoreapp2.2\artTechAPI.runtimeconfig.json
+d:\Website\Project\arttech\artTechAPI\bin\Debug\netcoreapp2.2\artTechAPI.runtimeconfig.dev.json
+d:\Website\Project\arttech\artTechAPI\bin\Debug\netcoreapp2.2\artTechAPI.dll
+d:\Website\Project\arttech\artTechAPI\bin\Debug\netcoreapp2.2\artTechAPI.pdb
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.RazorTargetAssemblyInfo.cache
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.dll
+d:\Website\Project\arttech\artTechAPI\obj\Debug\netcoreapp2.2\artTechAPI.pdb
