@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 
 export default function BasicTextFields(props) {
-    console.log(props);
     switch (props.elementType) {
         case 'input':
             switch (props.elementStyle) {
