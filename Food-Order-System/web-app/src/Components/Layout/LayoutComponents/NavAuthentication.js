@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
+import Input from '../../../UI/Input/Input';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,12 +20,45 @@ const useStyles = makeStyles(theme => ({
         '& > *': {
             margin: theme.spacing(1)
         }
+    },
+    input: {
+        '&::placeholder': {
+            color: 'white'
+        },
+        color: 'white'
     }
 }));
 
 export default function ButtonAppBar() {
     const classes = useStyles();
-
+    const [state, setState] = useState({
+        username: {
+            elementType: 'input',
+            elementStyle: {
+                styleType: 'default',
+                inputProps: classes.input,
+                outlineColor: 'secondary'
+            },
+            elementConfig: {
+                valueType: 'text',
+                placeholder: 'Username'
+            },
+            value: ''
+        },
+        password: {
+            elementType: 'input',
+            elementStyle: {
+                styleType: 'default',
+                inputProps: classes.input,
+                outlineColor: 'secondary'
+            },
+            elementConfig: {
+                valueType: 'password',
+                placeholder: 'Password'
+            },
+            value: ''
+        }
+    });
     return (
         <div className={classes.root}>
             <AppBar position='static'>
@@ -34,17 +67,8 @@ export default function ButtonAppBar() {
                         Food Order
                     </Typography>
                     <form className={classes.formUI}>
-                        <Input
-                            placeholder='Username'
-                            inputProps={{ 'aria-label': 'description' }}
-                            color='secondary'
-                        />
-                        <Input
-                            placeholder='password'
-                            inputProps={{ 'aria-label': 'description' }}
-                            color='secondary'
-                            type='password'
-                        />
+                        <Input {...state.username} />
+                        <Input {...state.password} />
                         <Button color='inherit'>Login</Button>
                     </form>
                 </Toolbar>

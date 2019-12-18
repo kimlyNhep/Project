@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '../../../UI/Input/Input';
 import Card from '@material-ui/core/Card';
@@ -9,24 +9,53 @@ import GoogleIcon from '../../../Assets/Icons/googleIcon.png';
 const useStyles = makeStyles(them => ({
     card: {
         width: '340px',
-        padding: '1rem',
+        padding: '.7rem',
         boxShadow: '5px 6px 7px #ccc'
     },
     formUI: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: 'center',
         alignItems: 'center'
     },
-
     socailUI: {
         width: '80%'
+    },
+    spacing: {
+        marginTop: '1rem'
     }
 }));
 
 function RegisterUI() {
     const classes = useStyles();
+    const [inputState, setInputState] = useState({
+        username: {
+            elementType: 'input',
+            elementStyle: {
+                styleType: 'default',
+                inputProps: classes.spacing,
+                outlineColor: 'primary'
+            },
+            elementConfig: {
+                valueType: 'text',
+                placeholder: 'Username'
+            },
+            value: ''
+        },
+        password: {
+            elementType: 'input',
+            elementStyle: {
+                styleType: 'default',
+                inputProps: classes.spacing,
+                outlineColor: 'primary'
+            },
+            elementConfig: {
+                valueType: 'password',
+                placeholder: 'Password'
+            },
+            value: ''
+        }
+    });
     return (
         <Card className={classes.card}>
             <p
@@ -40,19 +69,8 @@ function RegisterUI() {
                 Register
             </p>
             <form className={classes.formUI}>
-                <Input title='Username' required styled={{ width: '80%' }} />
-                <Input
-                    title='Password'
-                    type='password'
-                    required
-                    styled={{ width: '80%' }}
-                />
-                <Input
-                    title='Email'
-                    type='text'
-                    required
-                    styled={{ width: '80%' }}
-                />
+                <Input {...inputState.username} />
+                <Input {...inputState.password} />
                 <div
                     style={{
                         display: 'flex',
