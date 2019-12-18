@@ -23,15 +23,17 @@ const useStyles = makeStyles(theme => ({
     },
     input: {
         '&::placeholder': {
-            color: 'white'
+            color: 'gray'
         },
-        color: 'white'
+        color: 'black',
+        background: 'white',
+        paddingLeft: '.5rem'
     }
 }));
 
 export default function ButtonAppBar() {
     const classes = useStyles();
-    const [state, setState] = useState({
+    const [uiState] = useState({
         username: {
             elementType: 'input',
             elementStyle: {
@@ -42,8 +44,7 @@ export default function ButtonAppBar() {
             elementConfig: {
                 valueType: 'text',
                 placeholder: 'Username'
-            },
-            value: ''
+            }
         },
         password: {
             elementType: 'input',
@@ -55,10 +56,17 @@ export default function ButtonAppBar() {
             elementConfig: {
                 valueType: 'password',
                 placeholder: 'Password'
-            },
-            value: ''
+            }
         }
     });
+
+    const [usernameState, setUsername] = useState('');
+    const [passwordState, setPassword] = useState('');
+    const onChangeHandler = (event, identify) => {
+        if (identify === 'username') setUsername(event.target.value);
+        if (identify === 'password') setPassword(event.target.value);
+    };
+
     return (
         <div className={classes.root}>
             <AppBar position='static'>
@@ -67,8 +75,21 @@ export default function ButtonAppBar() {
                         Food Order
                     </Typography>
                     <form className={classes.formUI}>
-                        <Input {...state.username} />
-                        <Input {...state.password} />
+                        <Input
+                            {...uiState.username}
+                            value={usernameState}
+                            changed={event =>
+                                onChangeHandler(event, 'username')
+                            }
+                            autoFocus
+                        />
+                        <Input
+                            {...uiState.password}
+                            value={passwordState}
+                            changed={event =>
+                                onChangeHandler(event, 'password')
+                            }
+                        />
                         <Button color='inherit'>Login</Button>
                     </form>
                 </Toolbar>

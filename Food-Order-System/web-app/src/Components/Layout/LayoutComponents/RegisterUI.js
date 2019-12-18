@@ -6,10 +6,10 @@ import Button from '../../../UI/Button/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GoogleIcon from '../../../Assets/Icons/googleIcon.png';
 
-const useStyles = makeStyles(them => ({
+const useStyles = makeStyles(theme => ({
     card: {
         width: '340px',
-        padding: '.7rem',
+        padding: '.5rem',
         boxShadow: '5px 6px 7px #ccc'
     },
     formUI: {
@@ -18,44 +18,65 @@ const useStyles = makeStyles(them => ({
         flexDirection: 'column',
         alignItems: 'center'
     },
-    socailUI: {
+    inputUI: {
         width: '80%'
-    },
-    spacing: {
-        marginTop: '1rem'
     }
 }));
 
 function RegisterUI() {
     const classes = useStyles();
-    const [inputState, setInputState] = useState({
+    const [inputState] = useState({
         username: {
             elementType: 'input',
             elementStyle: {
-                styleType: 'default',
-                inputProps: classes.spacing,
+                styleType: 'standard',
                 outlineColor: 'primary'
             },
             elementConfig: {
                 valueType: 'text',
                 placeholder: 'Username'
-            },
-            value: ''
+            }
         },
         password: {
             elementType: 'input',
             elementStyle: {
-                styleType: 'default',
-                inputProps: classes.spacing,
+                styleType: 'standard',
                 outlineColor: 'primary'
             },
             elementConfig: {
                 valueType: 'password',
                 placeholder: 'Password'
+            }
+        },
+        email: {
+            elementType: 'input',
+            elementStyle: {
+                styleType: 'standard',
+                outlineColor: 'primary'
             },
-            value: ''
+            elementConfig: {
+                valueType: 'text',
+                placeholder: 'Email'
+            }
         }
     });
+    const [usernameState, setUsername] = useState('');
+    const [passwordState, setPassword] = useState('');
+    const [emailState, setEmail] = useState('');
+
+    const onChangeHandler = (event, identify) => {
+        switch (identify) {
+            case 'username':
+                return setUsername(event.target.value);
+            case 'password':
+                return setPassword(event.target.value);
+            case 'email':
+                return setEmail(event.target.value);
+            default:
+                return null;
+        }
+    };
+
     return (
         <Card className={classes.card}>
             <p
@@ -69,8 +90,26 @@ function RegisterUI() {
                 Register
             </p>
             <form className={classes.formUI}>
-                <Input {...inputState.username} />
-                <Input {...inputState.password} />
+                <div className={classes.inputUI}>
+                    <Input
+                        {...inputState.username}
+                        styled={{ width: '100%' }}
+                        value={usernameState}
+                        changed={event => onChangeHandler(event, 'username')}
+                    />
+                    <Input
+                        {...inputState.password}
+                        styled={{ width: '100%' }}
+                        value={passwordState}
+                        changed={event => onChangeHandler(event, 'password')}
+                    />
+                    <Input
+                        {...inputState.email}
+                        styled={{ width: '100%' }}
+                        value={emailState}
+                        changed={event => onChangeHandler(event, 'email')}
+                    />
+                </div>
                 <div
                     style={{
                         display: 'flex',
