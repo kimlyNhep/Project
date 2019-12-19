@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '../../../UI/Input/Input';
-import Card from '@material-ui/core/Card';
 import Button from '../../../UI/Button/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GoogleIcon from '../../../Assets/Icons/googleIcon.png';
 
 const useStyles = makeStyles(theme => ({
-    card: {
-        width: '340px',
-        padding: '.5rem',
-        boxShadow: '5px 6px 7px #ccc'
-    },
     formUI: {
         width: '100%',
         display: 'flex',
@@ -78,7 +72,7 @@ function RegisterUI() {
     };
 
     return (
-        <Card className={classes.card}>
+        <div>
             <p
                 style={{
                     textAlign: 'center',
@@ -129,7 +123,7 @@ function RegisterUI() {
                 </div>
                 <Button text='Sign In' color='primary' />
             </form>
-        </Card>
+        </div>
     );
 }
 

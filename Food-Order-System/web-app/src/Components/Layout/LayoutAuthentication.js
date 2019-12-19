@@ -1,12 +1,12 @@
 import React from 'react';
-import NavAuthentication from './LayoutComponents/NavAuthentication';
-import Card from './LayoutComponents/LayoutCard';
+import NavAuthentication from './Authentication/NavAuthentication';
+import Card from './Authentication/LayoutCard';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles(theme => ({
     layout: {
-        width: '100%',
-        height: '100%'
+        width: '100vw',
+        height: '100vh'
     }
 }));
 function Layout() {

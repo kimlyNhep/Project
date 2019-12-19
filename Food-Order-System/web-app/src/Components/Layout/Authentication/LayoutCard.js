@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -6,25 +6,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import AuthenticationSVG from '../../../Assets/Images/authentication.svg';
 import Loginform from './RegisterUI';
+import './LayoutCard.css';
 
 const useStyles = makeStyles(theme => ({
     container: {
         marginTop: '5rem',
         display: 'flex',
         justifyContent: 'center'
-    },
-    card: {
-        maxWidth: 345,
-        backgroundColor: '#ff1744',
-        boxShadow: '5px 6px 7px #ccc',
-        zIndex: 100,
-        float: 'left'
     },
     media: {
         height: 0,
@@ -39,37 +32,25 @@ const useStyles = makeStyles(theme => ({
     content: {
         textAlign: 'center',
         color: '#fff'
-    },
-    login: {
-        display: 'inline-block',
-        textAlign: 'right',
-        width: '100%'
-    },
-    expense: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        animation: `$expenseEffect 2s ${theme.transitions.easing.easeInOut}`,
-        zIndex: 10
-    },
-    '@keyframes expenseEffect': {
-        '0%': {
-            transform: 'translate(-90%)'
-        },
-
-        '100%': {
-            transform: 'translate(0%)'
-        }
     }
 }));
 
-export default function RecipeReviewCard() {
+function CustomCard() {
     const classes = useStyles();
+    const CardRef = useRef(null);
+
+    const transition = () => {
+        if (CardRef.current.classList.contains('active')) {
+            CardRef.current.classList.remove('active');
+        } else {
+            CardRef.current.classList.add('active');
+        }
+    };
 
     return (
-        <React.Fragment>
-            <div className={classes.container}>
-                <Card className={classes.card}>
+        <div className='cardContainer'>
+            <div className='card' onClick={transition} ref={CardRef}>
+                <Card className='side front'>
                     <CardHeader
                         avatar={
                             <Avatar
@@ -91,22 +72,23 @@ export default function RecipeReviewCard() {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                        <IconButton
-                            aria-label='add to favorites'
-                            color='inherit'
-                        >
+                        <div aria-label='add to favorites' color='inherit'>
                             <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label='share' color='inherit'>
+                        </div>
+                        <div aria-label='share' color='inherit'>
                             <ShareIcon />
-                        </IconButton>
+                        </div>
                     </CardActions>
                 </Card>
 
-                <div className={classes.expense}>
-                    <Loginform />
+                <div className='side back'>
+                    <div className='info'>
+                        <Loginform />
+                    </div>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
+
+export default CustomCard;
