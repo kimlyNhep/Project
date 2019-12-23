@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Button from '../../../UI/Button/Button';
 import Input from '../../../UI/Input/Input';
+import FoodLogo from '../../../Assets/Logos/Food-logo.png';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,6 +29,23 @@ const useStyles = makeStyles(theme => ({
         color: 'black',
         background: 'white',
         paddingLeft: '.5rem'
+    },
+    '@media (max-width: 600px)': {
+        formUI: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }
+    },
+    '@media (min-width: 768px)': {
+        formUI: {
+            '& > *': {
+                margin: theme.spacing(1)
+            },
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center'
+        }
     }
 }));
 
@@ -71,8 +89,13 @@ export default function ButtonAppBar() {
         <div className={classes.root}>
             <AppBar position='static'>
                 <Toolbar>
-                    <Typography variant='h6' className={classes.title}>
-                        Food Order
+                    <Typography variant='button' className={classes.title}>
+                        <img
+                            src={FoodLogo}
+                            height='60px'
+                            alt='Food Logo'
+                            style={{ margin: 0, padding: 0 }}
+                        />
                     </Typography>
                     <form className={classes.formUI}>
                         <Input
@@ -90,7 +113,7 @@ export default function ButtonAppBar() {
                                 onChangeHandler(event, 'password')
                             }
                         />
-                        <Button color='inherit'>Login</Button>
+                        <Button color='inherit' text='Login' />
                     </form>
                 </Toolbar>
             </AppBar>

@@ -10,7 +10,12 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: '.5rem',
+        marginTop: '2%',
+        paddingTop: '2%',
+        paddingBottom: '2%'
     },
     inputUI: {
         width: '80%'
@@ -42,7 +47,7 @@ function RegisterUI() {
                 placeholder: 'Password'
             }
         },
-        email: {
+        confirmPassword: {
             elementType: 'input',
             elementStyle: {
                 styleType: 'standard',
@@ -50,7 +55,7 @@ function RegisterUI() {
             },
             elementConfig: {
                 valueType: 'text',
-                placeholder: 'Email'
+                placeholder: 'Confirm Password'
             }
         }
     });
@@ -78,7 +83,8 @@ function RegisterUI() {
                     textAlign: 'center',
                     fontFamily: 'Yeon Sung',
                     fontSize: '30px',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    marginBottom: '5%'
                 }}
             >
                 Register
@@ -87,7 +93,7 @@ function RegisterUI() {
                 <div className={classes.inputUI}>
                     <Input
                         {...inputState.username}
-                        styled={{ width: '100%' }}
+                        styled={{ width: '100%', cursor: 'text' }}
                         value={usernameState}
                         changed={event => onChangeHandler(event, 'username')}
                     />
@@ -98,12 +104,15 @@ function RegisterUI() {
                         changed={event => onChangeHandler(event, 'password')}
                     />
                     <Input
-                        {...inputState.email}
+                        {...inputState.confirmPassword}
                         styled={{ width: '100%' }}
                         value={emailState}
-                        changed={event => onChangeHandler(event, 'email')}
+                        changed={event =>
+                            onChangeHandler(event, 'confirmPassword')
+                        }
                     />
                 </div>
+
                 <div
                     style={{
                         display: 'flex',
@@ -112,16 +121,18 @@ function RegisterUI() {
                     }}
                 >
                     <Button
+                        variant='contained'
                         text='Facebook'
                         icon={<FacebookIcon />}
                         color='primary'
                     />
                     <Button
+                        variant='contained'
                         text='Gmail'
                         icon={<img src={GoogleIcon} width='20px' alt='Gmail' />}
                     />
                 </div>
-                <Button text='Sign In' color='primary' />
+                <Button text='Sign In' color='primary' variant='contained' />
             </form>
         </div>
     );
