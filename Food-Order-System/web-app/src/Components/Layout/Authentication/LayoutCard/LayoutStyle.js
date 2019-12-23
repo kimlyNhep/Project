@@ -16,7 +16,6 @@ export const useStyles = makeStyles(theme => ({
         height: 0,
         paddingTop: '56.25%' // 16:9
     },
-
     avatar: {
         backgroundColor: '#fff !important',
         color: '#000 !important',
