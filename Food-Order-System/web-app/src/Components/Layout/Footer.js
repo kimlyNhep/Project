@@ -1,150 +1,150 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import FastFood from '../../Assets/Icons/Hamburger.png';
+import Soup from '../../Assets/Icons/soup.png';
+import IceScream from '../../Assets/Icons/icescream.png';
+import DrinkCocktail from '../../Assets/Icons/drink-cocktail.png';
+import Button from '../../UI/Button/Button';
+import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faFacebookF,
+    faInstagram,
+    faTwitter,
+    faGoogle
+} from '@fortawesome/free-brands-svg-icons';
+
+const useStyle = makeStyles(theme => ({
+    root: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+        margin: theme.spacing(2)
+    },
+    block: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    SignIn: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderTop: '1px solid black'
+    },
+    social: {
+        margin: theme.spacing(2),
+        cursor: 'pointer'
+    }
+}));
 
 function Footer() {
+    const classes = useStyle();
     return (
-        /* Footer */
+        <footer>
+            <div className='container'>
+                <div className={classes.root}>
+                    <Grid container spacing={4}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Paper className={classes.paper}>
+                                <div>
+                                    <h2>Our Service</h2>
+                                    <p>
+                                        We provide the service to our customer
+                                        to order food or drink throw the website
+                                    </p>
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Paper className={classes.paper}>
+                                <div>
+                                    <h2>Address</h2>
+                                    <p>
+                                        St #519, Preak Tapov, Sangkat Dermmean,
+                                        Krong Takhmao, Kandal, Cambodia
+                                    </p>
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4}>
+                            <Paper className={classes.paper}>
+                                <div>
+                                    <h2>Social Media</h2>
+                                    <FontAwesomeIcon
+                                        icon={faFacebookF}
+                                        className={classes.social}
+                                    />
 
-        <footer className='page-footer font-small stylish-color-dark pt-4'>
-            {/* Footer Links */}
-            <div className='container text-center text-md-left'>
-                {/* Grid row */}
-                <div className='row'>
-                    {/* Grid column */}
-                    <div className='col-md-4 mx-auto'>
-                        {/* Content */}
-                        <h5 className='font-weight-bold text-uppercase mt-3 mb-4'>
-                            Footer Content
-                        </h5>
-                        <p>
-                            Here you can use rows and columns to organize your
-                            footer content. Lorem ipsum dolor sit amet,
-                            consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    {/* Grid column */}
-                    <hr className='clearfix w-100 d-md-none' />
-                    {/* Grid column */}
-                    <div className='col-md-2 mx-auto'>
-                        {/* Links */}
-                        <h5 className='font-weight-bold text-uppercase mt-3 mb-4'>
-                            Links
-                        </h5>
-                        <ul className='list-unstyled'>
-                            <li>
-                                <a href='#!'>Link 1</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 2</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 3</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {/* Grid column */}
-                    <hr className='clearfix w-100 d-md-none' />
-                    {/* Grid column */}
-                    <div className='col-md-2 mx-auto'>
-                        {/* Links */}
-                        <h5 className='font-weight-bold text-uppercase mt-3 mb-4'>
-                            Links
-                        </h5>
-                        <ul className='list-unstyled'>
-                            <li>
-                                <a href='#!'>Link 1</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 2</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 3</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {/* Grid column */}
-                    <hr className='clearfix w-100 d-md-none' />
-                    {/* Grid column */}
-                    <div className='col-md-2 mx-auto'>
-                        {/* Links */}
-                        <h5 className='font-weight-bold text-uppercase mt-3 mb-4'>
-                            Links
-                        </h5>
-                        <ul className='list-unstyled'>
-                            <li>
-                                <a href='#!'>Link 1</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 2</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 3</a>
-                            </li>
-                            <li>
-                                <a href='#!'>Link 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {/* Grid column */}
+                                    <FontAwesomeIcon
+                                        icon={faInstagram}
+                                        className={classes.social}
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faTwitter}
+                                        className={classes.social}
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faGoogle}
+                                        className={classes.social}
+                                    />
+                                </div>
+                            </Paper>
+                        </Grid>
+
+                        {/* <Grid item xs={6} sm={3} className={classes.block}>
+                            <div className='preIcon'>
+                                <img
+                                    src={FastFood}
+                                    alt='Fast Food'
+                                    className='iconItem'
+                                />
+                            </div>
+                        </Grid>
+
+                        <Grid item xs={6} sm={3} className={classes.block}>
+                            <div className='preIcon'>
+                                <img
+                                    src={Soup}
+                                    alt='Fast Food'
+                                    className='iconItem'
+                                />
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={3} className={classes.block}>
+                            <div className='preIcon'>
+                                <img
+                                    src={IceScream}
+                                    alt='Fast Food'
+                                    className='iconItem'
+                                />
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={3} className={classes.block}>
+                            <div className='preIcon'>
+                                <img
+                                    src={DrinkCocktail}
+                                    alt='Fast Food'
+                                    className='iconItem'
+                                />
+                            </div>
+                        </Grid> */}
+                        <Grid item xs={12} className={classes.block}>
+                            <div className={classes.SignIn}>
+                                <div>Register for Free</div>
+                                <Button
+                                    text='Sign In'
+                                    variant='contained'
+                                    color='secondary'
+                                />
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
-                {/* Grid row */}
-            </div>
-            {/* Footer Links */}
-            <hr />
-            {/* Call to action */}
-            <ul className='list-unstyled list-inline text-center py-2'>
-                <li className='list-inline-item'>
-                    <h5 className='mb-1'>Register for free</h5>
-                </li>
-                <li className='list-inline-item'>
-                    <a href='#!' className='btn btn-danger btn-rounded'>
-                        Sign up!
-                    </a>
-                </li>
-            </ul>
-            {/* Call to action */}
-            <hr />
-            {/* Social buttons */}
-            <ul className='list-unstyled list-inline text-center'>
-                <li className='list-inline-item'>
-                    <a className='btn-floating btn-fb mx-1'>
-                        <i className='fab fa-facebook-f'> </i>
-                    </a>
-                </li>
-                <li className='list-inline-item'>
-                    <a className='btn-floating btn-tw mx-1'>
-                        <i className='fab fa-twitter'> </i>
-                    </a>
-                </li>
-                <li className='list-inline-item'>
-                    <a className='btn-floating btn-gplus mx-1'>
-                        <i className='fab fa-google-plus-g'> </i>
-                    </a>
-                </li>
-                <li className='list-inline-item'>
-                    <a className='btn-floating btn-li mx-1'>
-                        <i className='fab fa-linkedin-in'> </i>
-                    </a>
-                </li>
-                <li className='list-inline-item'>
-                    <a className='btn-floating btn-dribbble mx-1'>
-                        <i className='fab fa-dribbble'> </i>
-                    </a>
-                </li>
-            </ul>
-            {/* Social buttons */}
-            {/* Copyright */}
-            <div className='footer-copyright text-center py-3'>
-                © 2018 Copyright:
-                <a href='https://mdbootstrap.com/education/bootstrap/'>
-                    {' '}
-                    MDBootstrap.com
-                </a>
             </div>
         </footer>
     );
