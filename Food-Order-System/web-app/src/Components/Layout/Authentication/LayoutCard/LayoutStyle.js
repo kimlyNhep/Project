@@ -11,6 +11,7 @@ export const useStyles = makeStyles(theme => ({
         boxShadow: '5px 6px 7px #ccc',
         userSelect: 'none',
         maxWidth: '380px',
+        width: '380px',
         [theme.breakpoints.down('sm')]: {
             boxShadow: 'none'
         }
@@ -34,12 +35,14 @@ export const useStyles = makeStyles(theme => ({
             justifyContent: 'center'
         },
         card: {
-            maxWidth: '300px'
+            maxWidth: '300px',
+            width: '300px'
         }
     },
     [theme.breakpoints.down('sm')]: {
         card: {
-            maxWidth: '350px'
+            maxWidth: '350px',
+            width: '350px'
         }
     }
 }));

@@ -24,6 +24,7 @@ const useStyle = makeStyles(theme => ({
         flexGrow: 1
     },
     paper: {
+        userSelect: 'none',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -42,7 +43,11 @@ const useStyle = makeStyles(theme => ({
     social: {
         margin: theme.spacing(2),
         cursor: 'pointer',
+        padding: '1px',
         '&:hover': {
+            padding: '0px'
+        },
+        '&:active': {
             padding: '1px'
         }
     }

@@ -1,30 +1,12 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Input from '../../../../UI/Input/Input';
 import Button from '../../../../UI/Button/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-
-const useStyles = makeStyles(theme => ({
-    formUI: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderRadius: '.5rem',
-        marginTop: '2%',
-        paddingTop: '2%',
-        paddingBottom: '2%'
-    },
-    inputUI: {
-        width: '80%'
-    }
-}));
+import { Card, CardContent, CardActions, Grid } from '@material-ui/core';
 
 function RegisterUI() {
-    const classes = useStyles();
     const [inputState] = useState({
         username: {
             elementType: 'input',
@@ -55,14 +37,14 @@ function RegisterUI() {
                 outlineColor: 'primary'
             },
             elementConfig: {
-                valueType: 'text',
+                valueType: 'password',
                 placeholder: 'Confirm Password'
             }
         }
     });
     const [usernameState, setUsername] = useState('');
     const [passwordState, setPassword] = useState('');
-    const [emailState, setEmail] = useState('');
+    const [conPassState, setConPass] = useState('');
 
     const onChangeHandler = (event, identify) => {
         switch (identify) {
@@ -70,8 +52,8 @@ function RegisterUI() {
                 return setUsername(event.target.value);
             case 'password':
                 return setPassword(event.target.value);
-            case 'email':
-                return setEmail(event.target.value);
+            case 'confirmPassword':
+                return setConPass(event.target.value);
             default:
                 return null;
         }
@@ -90,8 +72,8 @@ function RegisterUI() {
             >
                 Register
             </p>
-            <form className={classes.formUI}>
-                <div className={classes.inputUI}>
+            <Card>
+                <CardContent>
                     <Input
                         {...inputState.username}
                         styled={{ width: '100%', cursor: 'text' }}
@@ -107,34 +89,37 @@ function RegisterUI() {
                     <Input
                         {...inputState.confirmPassword}
                         styled={{ width: '100%' }}
-                        value={emailState}
+                        value={conPassState}
                         changed={event =>
                             onChangeHandler(event, 'confirmPassword')
                         }
                     />
-                </div>
-
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        marginTop: '1rem'
-                    }}
-                >
-                    <Button
-                        variant='contained'
-                        text='Facebook'
-                        icon={<FacebookIcon />}
-                        color='primary'
-                    />
-                    <Button
-                        variant='contained'
-                        text='Gmail'
-                        icon={<FontAwesomeIcon icon={faGoogle} />}
-                    />
-                </div>
-                <Button text='Sign In' color='primary' variant='contained' />
-            </form>
+                </CardContent>
+                <CardActions>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Button
+                                variant='contained'
+                                text='Facebook'
+                                icon={<FacebookIcon />}
+                                color='primary'
+                                styled={{ width: '80%' }}
+                            />
+                            <Button
+                                variant='contained'
+                                text='Gmail'
+                                icon={<FontAwesomeIcon icon={faGoogle} />}
+                                styled={{ width: '80%' }}
+                            />
+                            <Button
+                                text='Sign In'
+                                color='primary'
+                                variant='contained'
+                            />
+                        </Grid>
+                    </Grid>
+                </CardActions>
+            </Card>
         </div>
     );
 }
