@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Avatar from '@material-ui/core/Avatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import RegisterForm from '../RegisterUI';
+import RegisterForm from '../Appbar/RegisterUI';
 import FoodCover from '../../../../Assets/Images/Food-cover.jpg';
 
 function LayoutCard() {

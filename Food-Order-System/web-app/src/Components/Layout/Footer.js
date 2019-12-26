@@ -8,7 +8,9 @@ import {
     faFacebookF,
     faInstagram,
     faTwitter,
-    faGoogle
+    faGoogle,
+    faGithub,
+    faDiscord
 } from '@fortawesome/free-brands-svg-icons';
 
 const useStyle = makeStyles(theme => ({
@@ -39,7 +41,10 @@ const useStyle = makeStyles(theme => ({
     },
     social: {
         margin: theme.spacing(2),
-        cursor: 'pointer'
+        cursor: 'pointer',
+        '&:hover': {
+            padding: '1px'
+        }
     }
 }));
 
@@ -91,6 +96,14 @@ function Footer() {
                                     />
                                     <FontAwesomeIcon
                                         icon={faGoogle}
+                                        className={classes.social}
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faGithub}
+                                        className={classes.social}
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faDiscord}
                                         className={classes.social}
                                     />
                                 </div>

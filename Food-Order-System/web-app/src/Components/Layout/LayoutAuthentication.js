@@ -1,5 +1,5 @@
 import React from 'react';
-import NavAuthentication from './Authentication/NavAuthentication';
+import NavAuthentication from './Authentication/Appbar/NavAuthentication';
 import Card from './Authentication/LayoutCard/LayoutCard';
 import { makeStyles } from '@material-ui/core/styles';
 import FoodBack from '../../Assets/Images/food-back.jpg';
@@ -8,36 +8,21 @@ import Footer from './Footer';
 const useStyle = makeStyles(theme => ({
     layout: {
         backgroundImage: `url(${FoodBack})`,
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        width: '100%',
+        height: '100%'
     },
     headerText: {
         marginTop: '3%',
         marginRight: '7%',
         textAlign: 'right',
         fontSize: '3rem',
-        userSelect: 'none'
-    },
-    '@media (max-width: 599px)': {
-        //​ ទំហំ Screen យ៉ាងធំបំផុត 599px
-        layout: {
-            width: '100%',
-            height: '100%'
-        },
-        headerText: {
+        userSelect: 'none',
+        [theme.breakpoints.down('xs')]: {
             display: 'none'
-        }
-    },
-    '@media (max-width: 768px)': {
-        //​ ទំហំ Screen យ៉ាងធំបំផុត 599px
-        headerText: {
+        },
+        [theme.breakpoints.down('sm')]: {
             fontSize: '32px'
-        }
-    },
-    '@media (min-width: 768px)': {
-        //​ ទំហំ Screen យ៉ាងតូចបំផុត 500px
-        layout: {
-            width: '100%',
-            height: '100%'
         }
     }
 }));

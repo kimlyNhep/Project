@@ -28,7 +28,7 @@ export const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         color: '#fff'
     },
-    '@media (max-width: 600px)': {
+    [theme.breakpoints.down('xs')]: {
         layout: {
             display: 'flex',
             justifyContent: 'center'
@@ -37,7 +37,7 @@ export const useStyles = makeStyles(theme => ({
             maxWidth: '300px'
         }
     },
-    '@media (max-width: 768px)': {
+    [theme.breakpoints.down('sm')]: {
         card: {
             maxWidth: '350px'
         }
