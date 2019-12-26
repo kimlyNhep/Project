@@ -10,7 +10,10 @@ export const useStyles = makeStyles(theme => ({
         backgroundColor: '#e22960',
         boxShadow: '5px 6px 7px #ccc',
         userSelect: 'none',
-        maxWidth: '380px'
+        maxWidth: '380px',
+        [theme.breakpoints.down('sm')]: {
+            boxShadow: 'none'
+        }
     },
     media: {
         height: 0,

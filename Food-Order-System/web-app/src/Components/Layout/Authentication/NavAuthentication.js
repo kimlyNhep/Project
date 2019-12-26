@@ -4,17 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import FoodLogo from '../../../Assets/Logos/Food-logo.png';
 import Input from '../../../UI/Input/Input';
 import Button from '../../../UI/Button/Button';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -69,6 +67,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         justifyContent: 'flex-end'
     },
+    formUIMobile: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
     input: {
         '&::placeholder': {
             color: 'gray'
@@ -84,10 +86,6 @@ export default function PrimarySearchAppBar() {
 
     const [usernameState, setUsername] = useState('');
     const [passwordState, setPassword] = useState('');
-    const onChangeHandler = (event, identify) => {
-        if (identify === 'username') setUsername(event.target.value);
-        if (identify === 'password') setPassword(event.target.value);
-    };
 
     const [uiState] = useState({
         username: {
@@ -116,87 +114,72 @@ export default function PrimarySearchAppBar() {
         }
     });
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [openDailog, setOpenDailog] = React.useState(false);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = event => {
-        setAnchorEl(event.currentTarget);
+    const handleClickOpen = () => {
+        setOpenDailog(true);
     };
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
+    const handleClose = () => {
+        setOpenDailog(false);
     };
 
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
+    const onChangeHandler = (event, identify) => {
+        if (identify === 'username') setUsername(event.target.value);
+        if (identify === 'password') setPassword(event.target.value);
     };
-
-    const handleMobileMenuOpen = event => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem>
-                <IconButton aria-label='show 4 new mails' color='inherit'>
-                    <Badge badgeContent={4} color='secondary'>
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    aria-label='show 11 new notifications'
-                    color='inherit'
-                >
-                    <Badge badgeContent={11} color='secondary'>
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label='account of current user'
-                    aria-controls='primary-search-account-menu'
-                    aria-haspopup='true'
-                    color='inherit'
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
+        <div>
+            <Dialog
+                open={openDailog}
+                onClose={handleClose}
+                aria-labelledby='form-dialog-title'
+                PaperProps={{
+                    style: {
+                        backgroundColor: '#3949ab',
+                        width: '80%'
+                    }
+                }}
+            >
+                <DialogTitle id='form-dialog-title' style={{ color: 'white' }}>
+                    Login
+                </DialogTitle>
+                <DialogContent>
+                    <div className={classes.formUIMobile}>
+                        <Input
+                            {...uiState.username}
+                            value={usernameState}
+                            changed={event =>
+                                onChangeHandler(event, 'username')
+                            }
+                            autoFocus
+                            styled={{ marginBottom: '5px' }}
+                        />
+                        <Input
+                            {...uiState.password}
+                            value={passwordState}
+                            changed={event =>
+                                onChangeHandler(event, 'password')
+                            }
+                        />
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        clicked={handleClose}
+                        text='Cancel'
+                        styled={{ color: 'white' }}
+                    />
+                    <Button
+                        color='secondary'
+                        clicked={handleClose}
+                        text='Login'
+                    />
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 
     return (
@@ -238,7 +221,7 @@ export default function PrimarySearchAppBar() {
                             aria-label='show more'
                             aria-controls={mobileMenuId}
                             aria-haspopup='true'
-                            onClick={handleMobileMenuOpen}
+                            onClick={handleClickOpen}
                             color='inherit'
                         >
                             <FontAwesomeIcon icon={faUser} />
@@ -247,7 +230,6 @@ export default function PrimarySearchAppBar() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {renderMenu}
         </div>
     );
 }

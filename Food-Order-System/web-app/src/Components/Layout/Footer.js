@@ -2,12 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import FastFood from '../../Assets/Icons/Hamburger.png';
-import Soup from '../../Assets/Icons/soup.png';
-import IceScream from '../../Assets/Icons/icescream.png';
-import DrinkCocktail from '../../Assets/Icons/drink-cocktail.png';
 import Button from '../../UI/Button/Button';
-import './Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faFacebookF,
@@ -17,6 +12,12 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const useStyle = makeStyles(theme => ({
+    container: {
+        backgroundColor: '#f8bbd0',
+        borderRadius: '10px',
+        padding: '16px',
+        margin: '10px'
+    },
     root: {
         flexGrow: 1
     },
@@ -46,7 +47,7 @@ function Footer() {
     const classes = useStyle();
     return (
         <footer>
-            <div className='container'>
+            <div className={classes.container}>
                 <div className={classes.root}>
                     <Grid container spacing={4}>
                         <Grid item xs={12} sm={6} md={4}>
@@ -95,44 +96,6 @@ function Footer() {
                                 </div>
                             </Paper>
                         </Grid>
-
-                        {/* <Grid item xs={6} sm={3} className={classes.block}>
-                            <div className='preIcon'>
-                                <img
-                                    src={FastFood}
-                                    alt='Fast Food'
-                                    className='iconItem'
-                                />
-                            </div>
-                        </Grid>
-
-                        <Grid item xs={6} sm={3} className={classes.block}>
-                            <div className='preIcon'>
-                                <img
-                                    src={Soup}
-                                    alt='Fast Food'
-                                    className='iconItem'
-                                />
-                            </div>
-                        </Grid>
-                        <Grid item xs={6} sm={3} className={classes.block}>
-                            <div className='preIcon'>
-                                <img
-                                    src={IceScream}
-                                    alt='Fast Food'
-                                    className='iconItem'
-                                />
-                            </div>
-                        </Grid>
-                        <Grid item xs={6} sm={3} className={classes.block}>
-                            <div className='preIcon'>
-                                <img
-                                    src={DrinkCocktail}
-                                    alt='Fast Food'
-                                    className='iconItem'
-                                />
-                            </div>
-                        </Grid> */}
                         <Grid item xs={12} className={classes.block}>
                             <div className={classes.SignIn}>
                                 <div>Register for Free</div>

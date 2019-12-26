@@ -19,6 +19,8 @@ export default function ContainedButtons(props) {
                 variant={props.variant}
                 color={props.color}
                 endIcon={props.icon}
+                onClick={props.clicked}
+                style={props.styled}
             >
                 {props.text}
             </Button>
