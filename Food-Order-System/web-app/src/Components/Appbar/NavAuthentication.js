@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from './NavStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FoodLogo from '../../../../Assets/Logos/Food-logo.png';
-import Input from '../../../../UI/Input/Input';
-import Button from '../../../../UI/Button/Button';
+import FoodLogo from '../../Assets/Logos/Food-logo.png';
+import Input from '../../UI/Input/Input';
+import Button from '../../UI/Button/Button';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,50 +14,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const useStyles = makeStyles(theme => ({
-    grow: {
-        flexGrow: 1
-    },
-    menuButton: {
-        marginRight: theme.spacing(2)
-    },
-    title: {
-        display: 'block'
-    },
-    sectionDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'flex'
-        }
-    },
-    sectionMobile: {
-        display: 'flex',
-        [theme.breakpoints.up('sm')]: {
-            display: 'none'
-        }
-    },
-    formUI: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    formUIMobile: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    input: {
-        '&::placeholder': {
-            color: 'gray'
-        },
-        color: 'black',
-        background: 'white',
-        paddingLeft: '.5rem'
-    }
-}));
-
 export default function AppNavBar() {
     const classes = useStyles();
-
     const [usernameState, setUsername] = useState('');
     const [passwordState, setPassword] = useState('');
 

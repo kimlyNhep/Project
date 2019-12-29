@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '../../UI/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faFacebookF,
@@ -32,13 +31,10 @@ const useStyle = makeStyles(theme => ({
     },
     block: {
         display: 'flex',
-        justifyContent: 'center'
-    },
-    SignIn: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderTop: '1px solid black'
+        justifyContent: 'center',
+        borderTop: '1px solid #616161',
+        margin: '1rem',
+        userSelect: 'none'
     },
     social: {
         margin: theme.spacing(2),
@@ -115,13 +111,8 @@ function Footer() {
                             </Paper>
                         </Grid>
                         <Grid item xs={12} className={classes.block}>
-                            <div className={classes.SignIn}>
-                                <div>Register for Free</div>
-                                <Button
-                                    text='Sign In'
-                                    variant='contained'
-                                    color='secondary'
-                                />
+                            <div>
+                                &#169; 2019 Food Order All Right Reserved.
                             </div>
                         </Grid>
                     </Grid>

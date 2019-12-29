@@ -1,9 +1,9 @@
 import React from 'react';
-import NavAuthentication from './Authentication/Appbar/NavAuthentication';
-import Card from './Authentication/LayoutCard/LayoutCard';
+import NavAuthentication from '../../Appbar/NavAuthentication';
+import Card from './LayoutCard/LayoutCard';
 import { makeStyles } from '@material-ui/core/styles';
 import FoodBack from '../../Assets/Images/food-back.jpg';
-import Footer from './Footer';
+import Footer from '../../Footer/Footer';
 
 const useStyle = makeStyles(theme => ({
     layout: {

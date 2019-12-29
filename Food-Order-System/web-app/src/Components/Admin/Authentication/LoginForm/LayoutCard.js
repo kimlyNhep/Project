@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Avatar from '@material-ui/core/Avatar';
-import RegisterForm from './RegisterUI';
+import LoginForm from './LoginUI';
 import FoodCover from '../../../../Assets/Images/Food-cover.jpg';
 
 function LayoutCard() {
@@ -21,7 +21,7 @@ function LayoutCard() {
                         </Avatar>
                     }
                     title='Food Order System'
-                    subheader='Seller'
+                    subheader='Administrator'
                 />
                 <CardMedia
                     className={classes.media}
@@ -30,7 +30,7 @@ function LayoutCard() {
                     style={{ paddingLeft: '200px !important' }}
                 />
                 <CardContent className={classes.content}>
-                    <RegisterForm />
+                    <LoginForm />
                 </CardContent>
             </Card>
         </div>

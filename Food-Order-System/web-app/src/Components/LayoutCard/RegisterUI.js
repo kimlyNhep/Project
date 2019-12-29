@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Input from '../../../../UI/Input/Input';
-import Button from '../../../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
+import Button from '../../UI/Button/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
