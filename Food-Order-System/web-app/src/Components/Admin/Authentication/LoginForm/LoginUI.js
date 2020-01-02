@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../../../../UI/Input/Input';
 import Button from '../../../../UI/Button/Button';
 import { Card, CardContent, CardActions, Grid } from '@material-ui/core';
+import axios from 'axios';
 
 function RegisterUI() {
     const [inputState] = useState({
@@ -43,6 +44,17 @@ function RegisterUI() {
         }
     };
 
+    const HandleLogin = () => {
+        axios
+            .post('http://localhost:8000/api/login', {
+                usernameState,
+                passwordState
+            })
+            .then(response => {
+                console.log(response);
+            });
+    };
+
     return (
         <div>
             <p
@@ -78,6 +90,7 @@ function RegisterUI() {
                                 text='Login'
                                 color='primary'
                                 variant='contained'
+                                clicked={HandleLogin}
                             />
                         </Grid>
                     </Grid>

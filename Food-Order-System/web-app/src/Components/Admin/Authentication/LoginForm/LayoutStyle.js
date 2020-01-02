@@ -31,20 +31,19 @@ export const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         color: '#fff'
     },
+    [theme.breakpoints.down('sm')]: {
+        card: {
+            width: '350px'
+        }
+    },
     [theme.breakpoints.down('xs')]: {
         layout: {
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            padding: 0
         },
         card: {
-            maxWidth: '300px',
             width: '300px'
-        }
-    },
-    [theme.breakpoints.down('sm')]: {
-        card: {
-            maxWidth: '350px',
-            width: '350px'
         }
     }
 }));
