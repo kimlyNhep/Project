@@ -46,7 +46,11 @@ function RegisterUI() {
 
     const HandleLogin = () => {
         axios
+<<<<<<< HEAD
             .post('http://localhost:8000/api/login', {
+=======
+            .post('/api/login', {
+>>>>>>> a9c888d1715ce89942a01a03d24b22ae19c2fa6c
                 email: usernameState,
                 password: passwordState
             })
