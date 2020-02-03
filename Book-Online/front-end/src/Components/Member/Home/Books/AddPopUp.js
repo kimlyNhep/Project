@@ -41,16 +41,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function EditPopUp(props) {
+function AddPopUp(props) {
     const classes = useStyles();
-    const [owner, setOwner] = React.useState(props.oldBook.owner);
-    const [genre, setGenre] = React.useState(props.oldBook.genre);
+    const [owner, setOwner] = React.useState('');
+    const [genre, setGenre] = React.useState('');
     const [selectedFile, setSelectedFile] = React.useState();
     const [imagePreviewUrl, setImagePreviewUrl] = React.useState();
 
-    const [selectedAttachFile, setSelectedAttachFile] = React.useState(
-        props.oldBook.source
-    );
+    const [selectedAttachFile, setSelectedAttachFile] = React.useState();
 
     const handleGenreChange = event => {
         setGenre(event.target.value);
@@ -109,7 +107,7 @@ function EditPopUp(props) {
                 aria-labelledby='form-dialog-title'
             >
                 <DialogTitle id='form-dialog-title'>
-                    Update <FontAwesomeIcon icon={faBook} />
+                    Add <FontAwesomeIcon icon={faBook} />
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText></DialogContentText>
@@ -122,7 +120,6 @@ function EditPopUp(props) {
                                 label='Title'
                                 type='text'
                                 fullWidth
-                                value={props.oldBook.title}
                             />
                             <TextField
                                 autoFocus
@@ -131,7 +128,6 @@ function EditPopUp(props) {
                                 label='Number of Pages'
                                 type='number'
                                 fullWidth
-                                value={props.oldBook.pages}
                             />
                             <TextField
                                 autoFocus
@@ -140,7 +136,6 @@ function EditPopUp(props) {
                                 label='Author'
                                 type='text'
                                 fullWidth
-                                value={props.oldBook.author}
                             />
                             <FormControl className={classes.formControl}>
                                 <InputLabel id='select-genre-label'>
@@ -152,11 +147,9 @@ function EditPopUp(props) {
                                     value={genre}
                                     onChange={handleGenreChange}
                                 >
-                                    <MenuItem value='drama'>Drama</MenuItem>
-                                    <MenuItem value='advanture'>
-                                        Advanture
-                                    </MenuItem>
-                                    <MenuItem value='comedy'>Comedy</MenuItem>
+                                    <MenuItem value={10}>Drama</MenuItem>
+                                    <MenuItem value={20}>Advanture</MenuItem>
+                                    <MenuItem value={30}>Comedy</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl className={classes.formControl}>
@@ -167,12 +160,11 @@ function EditPopUp(props) {
                                     labelId='demo-simple-select-label'
                                     id='demo-simple-select'
                                     value={owner}
-                                    // defaultValue={props.oldBook.owner}
                                     onChange={handleOwnerChange}
                                 >
-                                    <MenuItem value='kimly'>Kimly</MenuItem>
-                                    <MenuItem value='rotha'>Rotha</MenuItem>
-                                    <MenuItem value='chetha'>Chetha</MenuItem>
+                                    <MenuItem value={10}>Kimly</MenuItem>
+                                    <MenuItem value={20}>Rotha</MenuItem>
+                                    <MenuItem value={30}>Chetha</MenuItem>
                                 </Select>
                             </FormControl>
                             {selectedAttachFile && (
@@ -180,7 +172,7 @@ function EditPopUp(props) {
                                     id='file'
                                     type='text'
                                     fullWidth
-                                    value={selectedAttachFile}
+                                    value={selectedAttachFile.name}
                                     InputProps={{
                                         readOnly: true
                                     }}
@@ -242,7 +234,7 @@ function EditPopUp(props) {
                         Cancel
                     </Button>
                     <Button onClick={props.handleClose} color='primary'>
-                        Apply
+                        Added
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -250,4 +242,4 @@ function EditPopUp(props) {
     );
 }
 
-export default EditPopUp;
+export default AddPopUp;

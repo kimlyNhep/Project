@@ -14,10 +14,6 @@ import EditPopUp from './EditPopUp';
 import DeleteAlert from './DeleteAlert';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import InfoIcon from '@material-ui/icons/Info';
-
-import PDFUrl from '../../../../Assets/Files/sample.pdf';
-import BookImage from '../../../../Assets/Images/Harry_Potter.jpg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -84,56 +80,46 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Books() {
+function Owners() {
     const classes = useStyles();
-
-    const [bookData, setBookData] = React.useState([
-        {
-            img: BookImage,
-            title: 'Harry Poter',
-            pages: 700,
-            author: 'J.K Rolling',
-            genre: 'drama',
-            owner: 'kimly',
-            source: PDFUrl
-        },
-        {
-            img:
-                'https://images.unsplash.com/photo-1580093969189-38893b9de487?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
-            title: 'Image',
-            author: 'author'
-        },
-        {
-            img:
-                'https://images.unsplash.com/photo-1569289555688-dcc8113f68ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
-            title: 'Image',
-            author: 'author'
-        },
-        {
-            img:
-                'https://images.unsplash.com/photo-1569077218751-3e3de7800c00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
-            title: 'Image',
-            author: 'author'
-        },
-        {
-            img:
-                'https://images.unsplash.com/photo-1569132030134-7da0045b755b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
-            title: 'Image',
-            author: 'author'
-        },
-        {
-            img:
-                'https://images.unsplash.com/photo-1568288192047-cf22326a2c3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
-            title: 'Image',
-            author: 'author'
-        }
-    ]);
 
     const [Open, setOpen] = React.useState(false);
     const [OpenEdit, setOpenEdit] = React.useState(false);
     const [selected, setSelected] = React.useState();
     const [deleteAlert, setDeleteAlert] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');
+    const [ownerList, setOwner] = React.useState([
+        {
+            img:
+                'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'Harry Poter'
+        },
+        {
+            img:
+                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'Taylor'
+        },
+        {
+            img:
+                'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'Chris'
+        },
+        {
+            img:
+                'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'Berly'
+        },
+        {
+            img:
+                'https://images.unsplash.com/photo-1525450280520-7d542a86e065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'John'
+        },
+        {
+            img:
+                'https://images.unsplash.com/photo-1540174401473-df5f1c06c716?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+            name: 'Bean'
+        }
+    ]);
     const [displayData, setDisplayData] = React.useState([]);
 
     const handleClickOpen = () => {
@@ -168,27 +154,24 @@ function Books() {
 
     const handleSearch = event => {
         setSearchText(event.target.value);
-        const newOwner = bookData.filter(
-            owner =>
-                owner.title
-                    .toLocaleLowerCase()
-                    .includes(event.target.value.toLocaleLowerCase()) ||
-                owner.author
-                    .toLocaleLowerCase()
-                    .includes(event.target.value.toLocaleLowerCase())
+        const newOwner = ownerList.filter(owner =>
+            owner.name
+                .toLocaleLowerCase()
+                .includes(event.target.value.toLocaleLowerCase())
         );
         setDisplayData([...newOwner]);
         console.log('newOwner', newOwner);
     };
 
     useEffect(() => {
-        setDisplayData([...bookData]);
-        console.log('OwnerList', bookData);
-    }, [bookData]);
+        setDisplayData([...ownerList]);
+        console.log('OwnerList', ownerList);
+    }, [ownerList]);
 
     useEffect(() => {
         console.log('display', displayData);
     }, [displayData]);
+
     return (
         <div className={classes.root}>
             <div className={classes.search}>
@@ -212,26 +195,27 @@ function Books() {
                     cols={1}
                     style={{ height: 'auto' }}
                 >
-                    <ListSubheader component='div'>Books Library</ListSubheader>
-                    <IconButton onClick={handleClickOpen}>
+                    <ListSubheader component='div'>Members</ListSubheader>
+                    {/* <IconButton onClick={handleClickOpen}>
                         <AddIcon />
-                    </IconButton>
+                    </IconButton> */}
                 </GridListTile>
                 {displayData.map(tile => (
                     <GridListTile key={tile.img}>
-                        <img src={tile.img} alt={tile.title} />
+                        <img src={tile.img} alt={tile.name} />
                         <CrossIcon />
                         <GridListTileBar
-                            title={tile.title}
-                            subtitle={<span>by: {tile.author}</span>}
+                            title={tile.name}
                             actionIcon={
                                 <Button
-                                    aria-label={`info about ${tile.title}`}
+                                    aria-label={`info about ${tile.name}`}
                                     className={classes.icon}
                                     color='secondary'
-                                    onClick={() => handleOpenPDF(tile.source)}
+                                    onClick={event =>
+                                        handleOpenPDF(tile.source)
+                                    }
                                 >
-                                    Read
+                                    More
                                 </Button>
                             }
                         />
@@ -243,7 +227,7 @@ function Books() {
                                     className={classes.actionTool}
                                     onClick={handleOpenDeleteAlert}
                                 >
-                                    <InfoIcon />
+                                    <CrossIcon />
                                 </div>
                             }
                         />
@@ -256,7 +240,7 @@ function Books() {
                             actionIcon={
                                 <div
                                     className={classes.actionTool}
-                                    onClick={() => handleOpenEdit(tile)}
+                                    onClick={event => handleOpenEdit(tile)}
                                 >
                                     <EditIcon />
                                 </div>
@@ -284,4 +268,4 @@ function Books() {
     );
 }
 
-export default Books;
+export default Owners;

@@ -7,11 +7,15 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Components/Admin/Home/Home';
 import Member from './Components/Admin/Member/Member';
+import MemberPage from './Components/Member/Home/Home';
+import MemberList from './Components/Member/Member/Member';
 
 const routing = (
     <Router>
         <Dashboard path='/Admin/Home' component={Home} />
         <Dashboard path='/Admin/Member' component={Member} />
+        <Dashboard path='/Member/Home' component={MemberPage} />
+        <Dashboard path='/Member/Member' component={MemberList} />
         <Route exact path='/' component={Admin} />
     </Router>
 );

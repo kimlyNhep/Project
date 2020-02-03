@@ -180,7 +180,7 @@ function EditPopUp(props) {
                                     id='file'
                                     type='text'
                                     fullWidth
-                                    value={selectedAttachFile}
+                                    value={selectedAttachFile.name}
                                     InputProps={{
                                         readOnly: true
                                     }}
