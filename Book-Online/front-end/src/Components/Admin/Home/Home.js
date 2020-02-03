@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from './Table/Table';
-import RequestTable from './RequestTable/RequestTable';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import Books from './Books/Books';
 import { useHistory } from 'react-router-dom';
+import ApprovedList from './ApproveList/Approve';
 
 const useStyle = makeStyles(theme => ({
     root: {
@@ -28,13 +23,8 @@ const useStyle = makeStyles(theme => ({
 
 function Home() {
     const classes = useStyle();
-    const [openCollapse, setOpenCollapse] = useState(true);
-
-    const handleClick = () => {
-        setOpenCollapse(!openCollapse);
-    };
-
     const history = useHistory();
+
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
@@ -58,51 +48,14 @@ function Home() {
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
-                    <Table />
+                    <Paper className={classes.paper}>
+                        <Books />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <ApprovedList />
                 </Grid>
             </Grid>
-
-            {/* <Grid item xs={2}>
-                    <Grid item xs={12} style={{ flexBasis: '0' }}>
-                        <Paper
-                            className={classes.paper}
-                            style={{ backgroundColor: '#4db6ac' }}
-                        >
-                            <ListItem onClick={handleClick}>
-                                <ListItemText primary='Category' />
-                                {openCollapse ? <ExpandLess /> : <ExpandMore />}
-                            </ListItem>
-                        </Paper>
-                    </Grid>
-                    <Collapse in={openCollapse} timeout='auto' unmountOnExit>
-                        <Grid container xs={12}>
-                            <Grid item xs={12} className={classes.categoryGrid}>
-                                <Paper
-                                    className={classes.paper}
-                                    style={{ backgroundColor: '#b2dfdb' }}
-                                >
-                                    Advanture
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={12} className={classes.categoryGrid}>
-                                <Paper
-                                    className={classes.paper}
-                                    style={{ backgroundColor: '#b2dfdb' }}
-                                >
-                                    Magic
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={12} className={classes.categoryGrid}>
-                                <Paper
-                                    className={classes.paper}
-                                    style={{ backgroundColor: '#b2dfdb' }}
-                                >
-                                    Love
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </Collapse>
-                </Grid> */}
         </div>
     );
 }
