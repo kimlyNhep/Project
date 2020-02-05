@@ -7,14 +7,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import AttachFile from '@material-ui/icons/AttachFile';
+
 import Paper from '@material-ui/core/Paper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -43,20 +39,10 @@ const useStyles = makeStyles(theme => ({
 
 function AddPopUp(props) {
     const classes = useStyles();
-    const [owner, setOwner] = React.useState('');
-    const [genre, setGenre] = React.useState('');
     const [selectedFile, setSelectedFile] = React.useState();
     const [imagePreviewUrl, setImagePreviewUrl] = React.useState();
 
     const [selectedAttachFile, setSelectedAttachFile] = React.useState();
-
-    const handleGenreChange = event => {
-        setGenre(event.target.value);
-    };
-
-    const handleOwnerChange = event => {
-        setOwner(event.target.value);
-    };
 
     const handlePreview = event => {
         if (!event.target.files || event.target.files.length === 0) {
@@ -66,16 +52,6 @@ function AddPopUp(props) {
 
         // I've kept this example simple by using the first image instead of multiple
         setSelectedFile(event.target.files[0]);
-    };
-
-    const handleAttachFile = event => {
-        if (!event.target.files || event.target.files.length === 0) {
-            setSelectedAttachFile(undefined);
-            return;
-        }
-
-        // I've kept this example simple by using the first image instead of multiple
-        setSelectedAttachFile(event.target.files[0]);
     };
 
     useEffect(() => {
@@ -116,57 +92,35 @@ function AddPopUp(props) {
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='title'
-                                label='Title'
+                                id='Firstname'
+                                label='First name'
                                 type='text'
                                 fullWidth
                             />
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='pages'
-                                label='Number of Pages'
-                                type='number'
+                                id='Lastname'
+                                label='Last name'
+                                type='text'
                                 fullWidth
                             />
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='author'
-                                label='Author'
+                                id='Username'
+                                label='Username'
                                 type='text'
                                 fullWidth
                             />
-                            <FormControl className={classes.formControl}>
-                                <InputLabel id='select-genre-label'>
-                                    Genre
-                                </InputLabel>
-                                <Select
-                                    labelId='select-genre-label'
-                                    id='select-genre'
-                                    value={genre}
-                                    onChange={handleGenreChange}
-                                >
-                                    <MenuItem value={10}>Drama</MenuItem>
-                                    <MenuItem value={20}>Advanture</MenuItem>
-                                    <MenuItem value={30}>Comedy</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel id='demo-simple-select-label'>
-                                    Owner
-                                </InputLabel>
-                                <Select
-                                    labelId='demo-simple-select-label'
-                                    id='demo-simple-select'
-                                    value={owner}
-                                    onChange={handleOwnerChange}
-                                >
-                                    <MenuItem value={10}>Kimly</MenuItem>
-                                    <MenuItem value={20}>Rotha</MenuItem>
-                                    <MenuItem value={30}>Chetha</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <TextField
+                                autoFocus
+                                margin='dense'
+                                id='email'
+                                label='Email'
+                                type='email'
+                                fullWidth
+                            />
                         </Grid>
                         <Grid item xs={4}>
                             <Paper variant='outlined' className={classes.paper}>

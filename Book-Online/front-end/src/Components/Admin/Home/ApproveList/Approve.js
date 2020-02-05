@@ -10,6 +10,7 @@ import { ListItemIcon, Button } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DetailItem from './DetailItem';
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -100,7 +101,7 @@ export default function AlignItemsList() {
                                 <Button
                                     onClick={() => handleMoreClick(bookData)}
                                 >
-                                    More
+                                    <InfoIcon />
                                 </Button>
                             </React.Fragment>
                         }

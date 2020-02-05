@@ -18,6 +18,10 @@ const useStyle = makeStyles(theme => ({
     },
     categoryGrid: {
         marginTop: theme.spacing(1)
+    },
+    bookList: {
+        display: 'flex',
+        justifyContent: 'center'
     }
 }));
 
@@ -47,10 +51,8 @@ function Home() {
                         Members
                     </Paper>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <Books />
-                    </Paper>
+                <Grid item xs={12} className={classes.bookList}>
+                    <Books />
                 </Grid>
                 <Grid item xs={12}>
                     <ApprovedList />

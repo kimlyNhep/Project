@@ -15,11 +15,19 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import CloseIcon from '@material-ui/icons/Close';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridList from '@material-ui/core/GridList';
 
 const useStyle = makeStyles(theme => ({
     preview: {
         width: 180,
         height: 260
+    },
+    gridList: {
+        width: '100%',
+        height: 260,
+        display: 'flex',
+        alignItems: 'center'
     }
 }));
 
@@ -111,11 +119,15 @@ export default function DetailItem(props) {
                 <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <img
-                                src=''
-                                alt='Profile'
-                                className={classes.preview}
-                            />
+                            <GridList
+                                cellHeight={180}
+                                cols={1}
+                                className={classes.gridList}
+                            >
+                                <GridListTile key=''>
+                                    <img src='' alt='' />
+                                </GridListTile>
+                            </GridList>
                         </Grid>
                         <Grid item xs={8}>
                             <FormControl
@@ -134,7 +146,7 @@ export default function DetailItem(props) {
                                     id='standard-adornment-first-name'
                                     type='text'
                                     inputRef={inputRefFirstname}
-                                    disabled={values.nonEditableFirstname}
+                                    readOnly={values.nonEditableFirstname}
                                     endAdornment={
                                         <InputAdornment position='end'>
                                             <IconButton
@@ -168,7 +180,7 @@ export default function DetailItem(props) {
                                 <Input
                                     id='standard-adornment-first-name'
                                     type='text'
-                                    disabled={values.nonEditableLastname}
+                                    readOnly={values.nonEditableLastname}
                                     inputRef={inputRefLastname}
                                     endAdornment={
                                         <InputAdornment position='end'>
@@ -201,7 +213,7 @@ export default function DetailItem(props) {
                                 <Input
                                     id='standard-adornment-first-name'
                                     type='text'
-                                    disabled={values.nonEditableUsername}
+                                    readOnly={values.nonEditableUsername}
                                     inputRef={inputRefUsername}
                                     endAdornment={
                                         <InputAdornment position='end'>
@@ -235,7 +247,7 @@ export default function DetailItem(props) {
                                     id='standard-adornment-first-name'
                                     type='email'
                                     inputRef={inputRefEmail}
-                                    disabled={values.nonEditableEmail}
+                                    readOnly={values.nonEditableEmail}
                                     endAdornment={
                                         <InputAdornment position='end'>
                                             <IconButton

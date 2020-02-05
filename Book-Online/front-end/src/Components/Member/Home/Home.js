@@ -4,7 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Books from './Books/Books';
 import { useHistory } from 'react-router-dom';
-import ApprovedList from './ApproveList/Approve';
 
 const useStyle = makeStyles(theme => ({
     root: {
@@ -33,7 +32,7 @@ function Home() {
                         className={classes.paper}
                         style={{ backgroundColor: '#673ab7', color: 'white' }}
                     >
-                        Books
+                        Your Books
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
@@ -52,9 +51,6 @@ function Home() {
                         <Books />
                     </Paper>
                 </Grid>
-                {/* <Grid item xs={12}>
-                    <ApprovedList />
-                </Grid> */}
             </Grid>
         </div>
     );

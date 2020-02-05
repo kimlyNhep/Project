@@ -252,7 +252,7 @@ export default function MiniDrawer(props) {
                 </ListItem>
                 <List>
                     <Collapse in={openCategory} timeout='auto' unmountOnExit>
-                        {['Drama', 'Love', 'Comedy'].map((text, index) => (
+                        {['Advanture', 'Love', 'Comedy'].map((text, index) => (
                             <ListItem
                                 button
                                 key={text}

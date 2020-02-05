@@ -1,0 +1,24 @@
+import React from 'react';
+
+function BookCard(props) {
+    const [Span, setSpan] = React.useState(0);
+    const imageRef = React.useRef();
+
+    React.useEffect(() => {
+        imageRef.current.addEventListener('load', handleSpan);
+    }, []);
+
+    const handleSpan = () => {
+        const Height = imageRef.current.clientHeight;
+        const Span = Math.ceil(Height / 10);
+        setSpan(Span);
+    };
+
+    return (
+        <div style={{ gridRowEnd: `span ${Span}` }}>
+            <img ref={imageRef} alt='' src={props.book.img} />
+        </div>
+    );
+}
+
+export default BookCard;

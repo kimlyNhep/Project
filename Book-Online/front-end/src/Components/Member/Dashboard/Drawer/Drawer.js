@@ -18,10 +18,6 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collection from '@material-ui/icons/Collections';
-import Account from '@material-ui/icons/AccountCircle';
-import Addbox from '@material-ui/icons/AddBox';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import LockOpen from '@material-ui/icons/LockOpen';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import InfoIcon from '@material-ui/icons/Info';
@@ -99,16 +95,11 @@ export default function MiniDrawer(props) {
     const [open, setOpen] = React.useState(true);
 
     const [openCategory, setOpenCategory] = React.useState(true);
-    const [expandAdmin, setExpandAdmin] = React.useState(true);
-    const [openProfile, setOpenProfile] = React.useState(false);
+    const [openProfile, setOpenProfile] = React.useState(true);
     const [viewProfile, setViewProfile] = React.useState(false);
 
     const handleCategory = () => {
         setOpenCategory(!openCategory);
-    };
-
-    const handleExpandAdmin = () => {
-        setExpandAdmin(!expandAdmin);
     };
 
     const handleOpenProfile = () => {
@@ -123,7 +114,6 @@ export default function MiniDrawer(props) {
         setOpen(false);
         setOpenCategory(false);
         setOpenProfile(false);
-        setExpandAdmin(false);
     };
 
     const handleViewProfile = () => {
@@ -205,44 +195,6 @@ export default function MiniDrawer(props) {
                     </List>
                 </List>
                 <Divider />
-                <ListItem button onClick={handleExpandAdmin}>
-                    <ListItemIcon>
-                        <Account />
-                    </ListItemIcon>
-                    <ListItemText primary='Administrator' />
-                    {expandAdmin ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <List>
-                    <Collapse in={expandAdmin} timeout='auto' unmountOnExit>
-                        <ListItem button key='Add' className={classes.nested}>
-                            <ListItemIcon>
-                                <Addbox />
-                            </ListItemIcon>
-                            <ListItemText primary='Add' />
-                        </ListItem>
-                        <ListItem
-                            button
-                            key='Update'
-                            className={classes.nested}
-                        >
-                            <ListItemIcon>
-                                <EditIcon />
-                            </ListItemIcon>
-                            <ListItemText primary='Update' />
-                        </ListItem>
-                        <ListItem
-                            button
-                            key='Delete'
-                            className={classes.nested}
-                        >
-                            <ListItemIcon>
-                                <DeleteIcon />
-                            </ListItemIcon>
-                            <ListItemText primary='Delete' />
-                        </ListItem>
-                    </Collapse>
-                </List>
-                <Divider />
                 <ListItem button onClick={handleCategory}>
                     <ListItemIcon>
                         <Collection />
@@ -252,7 +204,7 @@ export default function MiniDrawer(props) {
                 </ListItem>
                 <List>
                     <Collapse in={openCategory} timeout='auto' unmountOnExit>
-                        {['Drama', 'Love', 'Comedy'].map((text, index) => (
+                        {['Advanture', 'Love', 'Comedy'].map((text, index) => (
                             <ListItem
                                 button
                                 key={text}
@@ -263,25 +215,6 @@ export default function MiniDrawer(props) {
                         ))}
                     </Collapse>
                     <Divider />
-
-                    <ListItem button key='Add' className={classes.nested}>
-                        <ListItemIcon>
-                            <Addbox />
-                        </ListItemIcon>
-                        <ListItemText primary='Add' />
-                    </ListItem>
-                    <ListItem button key='Update' className={classes.nested}>
-                        <ListItemIcon>
-                            <EditIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Update' />
-                    </ListItem>
-                    <ListItem button key='Delete' className={classes.nested}>
-                        <ListItemIcon>
-                            <DeleteIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Delete' />
-                    </ListItem>
                 </List>
             </Drawer>
             <div className={classes.content}>

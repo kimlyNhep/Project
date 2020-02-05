@@ -3,15 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import AddPopUp from './AddPopUp';
 import CrossIcon from '@material-ui/icons/Cancel';
-import EditIcon from '@material-ui/icons/Edit';
-import EditPopUp from './EditPopUp';
-import DeleteAlert from './DeleteAlert';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import InfoIcon from '@material-ui/icons/Info';
@@ -30,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
     gridList: {
         width: '100%',
-        height: 450
+        height: 740
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)'
@@ -129,41 +122,12 @@ function Books() {
         }
     ]);
 
-    const [Open, setOpen] = React.useState(false);
-    const [OpenEdit, setOpenEdit] = React.useState(false);
-    const [selected, setSelected] = React.useState();
-    const [deleteAlert, setDeleteAlert] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');
     const [displayData, setDisplayData] = React.useState([]);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleOpenEdit = oldBook => {
-        setSelected(oldBook);
-        setOpenEdit(true);
-    };
-
-    const handleCloseEdit = () => {
-        setOpenEdit(false);
-    };
 
     const handleOpenPDF = source => {
         console.log(source);
         window.open(source);
-    };
-
-    const handleOpenDeleteAlert = () => {
-        setDeleteAlert(true);
-    };
-
-    const handleCloseDeleteAlert = () => {
-        setDeleteAlert(false);
     };
 
     const handleSearch = event => {
@@ -207,18 +171,8 @@ function Books() {
                 />
             </div>
             <GridList cellHeight={180} cols={5} className={classes.gridList}>
-                <GridListTile
-                    key='Subheader'
-                    cols={1}
-                    style={{ height: 'auto' }}
-                >
-                    <ListSubheader component='div'>Books Library</ListSubheader>
-                    <IconButton onClick={handleClickOpen}>
-                        <AddIcon />
-                    </IconButton>
-                </GridListTile>
                 {displayData.map(tile => (
-                    <GridListTile key={tile.img}>
+                    <GridListTile key={tile.img} rows={2}>
                         <img src={tile.img} alt={tile.title} />
                         <CrossIcon />
                         <GridListTileBar
@@ -239,47 +193,14 @@ function Books() {
                             titlePosition='top'
                             className={classes.titleBar}
                             actionIcon={
-                                <div
-                                    className={classes.actionTool}
-                                    onClick={handleOpenDeleteAlert}
-                                >
+                                <div className={classes.actionTool}>
                                     <InfoIcon />
                                 </div>
                             }
                         />
-                        <GridListTileBar
-                            titlePosition='top'
-                            style={{
-                                width: '50%',
-                                background: 'transparent'
-                            }}
-                            actionIcon={
-                                <div
-                                    className={classes.actionTool}
-                                    onClick={() => handleOpenEdit(tile)}
-                                >
-                                    <EditIcon />
-                                </div>
-                            }
-                            actionPosition='left'
-                        />
                     </GridListTile>
                 ))}
             </GridList>
-            <AddPopUp open={Open} handleClose={handleClose} />
-            {OpenEdit && (
-                <EditPopUp
-                    open={OpenEdit}
-                    handleClose={handleCloseEdit}
-                    oldBook={selected}
-                />
-            )}
-            {deleteAlert && (
-                <DeleteAlert
-                    open={deleteAlert}
-                    handleClose={handleCloseDeleteAlert}
-                />
-            )}
         </div>
     );
 }

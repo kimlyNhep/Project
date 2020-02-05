@@ -126,7 +126,7 @@ export default function Navbar(props) {
                         variant='h6'
                         noWrap
                         onClick={() => {
-                            history.push('/Admin/Home');
+                            history.push('/Member/Home');
                         }}
                     >
                         BOOK

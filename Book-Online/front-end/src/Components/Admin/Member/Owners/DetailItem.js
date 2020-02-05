@@ -55,11 +55,11 @@ export default function DetailItem(props) {
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='title'
-                                label='Title'
+                                id='Firstname'
+                                label='First name'
                                 type='text'
                                 fullWidth
-                                value={props.item.title}
+                                value={props.item.name}
                                 InputProps={{
                                     readOnly: true
                                 }}
@@ -67,19 +67,8 @@ export default function DetailItem(props) {
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='pages'
-                                label='Number of Pages'
-                                type='number'
-                                fullWidth
-                                InputProps={{
-                                    readOnly: true
-                                }}
-                            />
-                            <TextField
-                                autoFocus
-                                margin='dense'
-                                id='author'
-                                label='Author'
+                                id='Lastname'
+                                label='Last name'
                                 type='text'
                                 fullWidth
                                 InputProps={{
@@ -89,8 +78,8 @@ export default function DetailItem(props) {
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='genre'
-                                label='Genre'
+                                id='Username'
+                                label='Username'
                                 type='text'
                                 fullWidth
                                 InputProps={{
@@ -100,9 +89,9 @@ export default function DetailItem(props) {
                             <TextField
                                 autoFocus
                                 margin='dense'
-                                id='owner'
-                                label='Owner'
-                                type='text'
+                                id='email'
+                                label='Email'
+                                type='email'
                                 fullWidth
                                 InputProps={{
                                     readOnly: true

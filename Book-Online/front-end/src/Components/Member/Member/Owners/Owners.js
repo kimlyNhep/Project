@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import AddPopUp from './AddPopUp';
-import CrossIcon from '@material-ui/icons/Cancel';
-import EditIcon from '@material-ui/icons/Edit';
-import EditPopUp from './EditPopUp';
-import DeleteAlert from './DeleteAlert';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import InfoIcon from '@material-ui/icons/Info';
+import DetailMember from './DetailItem';
+
+let breakpoints = 5;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
     gridList: {
         width: '100%',
-        height: 450
+        height: 740
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)'
@@ -77,17 +76,18 @@ const useStyles = makeStyles(theme => ({
             marginLeft: theme.spacing(3),
             width: 'auto'
         }
-    }
+    },
+    preview: {}
 }));
 
 function Owners() {
     const classes = useStyles();
+    const theme = useTheme();
 
     const [Open, setOpen] = React.useState(false);
-    const [OpenEdit, setOpenEdit] = React.useState(false);
-    const [selected, setSelected] = React.useState();
-    const [deleteAlert, setDeleteAlert] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');
+    const [viewProfile, setViewProfile] = React.useState(false);
+    const [selectedProfile, setSelectedProfile] = React.useState();
     const [ownerList, setOwner] = React.useState([
         {
             img:
@@ -122,34 +122,21 @@ function Owners() {
     ]);
     const [displayData, setDisplayData] = React.useState([]);
 
+    const handleViewProfile = profile => {
+        setViewProfile(true);
+        setSelectedProfile(profile);
+    };
+
+    const handleCloseViewProfile = () => {
+        setViewProfile(false);
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-    };
-
-    const handleOpenEdit = oldBook => {
-        setSelected(oldBook);
-        setOpenEdit(true);
-    };
-
-    const handleCloseEdit = () => {
-        setOpenEdit(false);
-    };
-
-    const handleOpenPDF = source => {
-        console.log(source);
-        window.open(source);
-    };
-
-    const handleOpenDeleteAlert = () => {
-        setDeleteAlert(true);
-    };
-
-    const handleCloseDeleteAlert = () => {
-        setDeleteAlert(false);
     };
 
     const handleSearch = event => {
@@ -189,79 +176,34 @@ function Owners() {
                     onChange={event => handleSearch(event)}
                 />
             </div>
-            <GridList cellHeight={180} cols={5} className={classes.gridList}>
-                <GridListTile
-                    key='Subheader'
-                    cols={1}
-                    style={{ height: 'auto' }}
-                >
-                    <ListSubheader component='div'>Members</ListSubheader>
-                    {/* <IconButton onClick={handleClickOpen}>
-                        <AddIcon />
-                    </IconButton> */}
-                </GridListTile>
+            <GridList
+                cellHeight={180}
+                cols={breakpoints}
+                className={classes.gridList}
+            >
                 {displayData.map(tile => (
-                    <GridListTile key={tile.img}>
+                    <GridListTile key={tile.img} rows={2}>
                         <img src={tile.img} alt={tile.name} />
-                        <CrossIcon />
-                        <GridListTileBar
-                            title={tile.name}
-                            actionIcon={
-                                <Button
-                                    aria-label={`info about ${tile.name}`}
-                                    className={classes.icon}
-                                    color='secondary'
-                                    onClick={event =>
-                                        handleOpenPDF(tile.source)
-                                    }
-                                >
-                                    More
-                                </Button>
-                            }
-                        />
+                        <GridListTileBar title={tile.name} />
                         <GridListTileBar
                             titlePosition='top'
                             className={classes.titleBar}
+                            onClick={() => handleViewProfile(tile)}
                             actionIcon={
-                                <div
-                                    className={classes.actionTool}
-                                    onClick={handleOpenDeleteAlert}
-                                >
-                                    <CrossIcon />
+                                <div className={classes.actionTool}>
+                                    <InfoIcon />
                                 </div>
                             }
-                        />
-                        <GridListTileBar
-                            titlePosition='top'
-                            style={{
-                                width: '50%',
-                                background: 'transparent'
-                            }}
-                            actionIcon={
-                                <div
-                                    className={classes.actionTool}
-                                    onClick={event => handleOpenEdit(tile)}
-                                >
-                                    <EditIcon />
-                                </div>
-                            }
-                            actionPosition='left'
                         />
                     </GridListTile>
                 ))}
             </GridList>
             <AddPopUp open={Open} handleClose={handleClose} />
-            {OpenEdit && (
-                <EditPopUp
-                    open={OpenEdit}
-                    handleClose={handleCloseEdit}
-                    oldBook={selected}
-                />
-            )}
-            {deleteAlert && (
-                <DeleteAlert
-                    open={deleteAlert}
-                    handleClose={handleCloseDeleteAlert}
+            {viewProfile && (
+                <DetailMember
+                    open={viewProfile}
+                    handleClose={handleCloseViewProfile}
+                    item={selectedProfile}
                 />
             )}
         </div>
