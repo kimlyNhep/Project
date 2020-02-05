@@ -15,9 +15,9 @@ function BookCard(props) {
     };
 
     return (
-        <div style={{ gridRowEnd: `span ${Span}` }}>
-            <img ref={imageRef} alt='' src={props.book.img} />
-        </div>
+        <li>
+            <img ref={imageRef} alt='' src={props.book.img} className='item' />
+        </li>
     );
 }
 
