@@ -51,7 +51,7 @@ function Home() {
                         Members
                     </Paper>
                 </Grid>
-                <Grid item xs={12} className={classes.bookList}>
+                <Grid item xs={12}>
                     <Books />
                 </Grid>
                 <Grid item xs={12}>

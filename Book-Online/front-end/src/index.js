@@ -10,7 +10,7 @@ import Home from './Components/Admin/Home/Home';
 import Member from './Components/Admin/Member/Member';
 import MemberPage from './Components/Member/Home/Home';
 import MemberList from './Components/Member/Member/Member';
-import Yourbooks from './Components/Member/Home/YourBooks/YourBooks';
+import MyBooks from './Components/Member/Home/MyBooks/MyBooks';
 
 const routing = (
     <Router>
@@ -18,7 +18,7 @@ const routing = (
         <Dashboard path='/Admin/Member' component={Member} />
         <DashboardMember path='/Member/Home' component={MemberPage} />
         <DashboardMember path='/Member/Member' component={MemberList} />
-        <DashboardMember path='/Member/Yourbooks' component={Yourbooks} />
+        <DashboardMember path='/Member/MyBooks' component={MyBooks} />
         <Route exact path='/' component={Admin} />
     </Router>
 );

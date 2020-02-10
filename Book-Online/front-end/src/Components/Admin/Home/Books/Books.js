@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import InfoIcon from '@material-ui/icons/Info';
-import DetailBook from './DetailItem';
 import withWidth from '@material-ui/core/withWidth';
 import Paper from '@material-ui/core/Paper';
-import BooksList from './BooksList/BooksList';
-
 import PDFUrl from '../../../../Assets/Files/sample.pdf';
 import BookImage from '../../../../Assets/Images/halt-blood-prince.jpg';
+import AnotherPDF from '../../../../Assets/Files/WPF.pdf';
+import BookItem from './BookItem/BookItem';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+import './Books.css';
+import ArrowNext from '@material-ui/icons/ArrowForwardIos';
+import ArrowPrev from '@material-ui/icons/ArrowBackIos';
+
+const Arrow = ({ text, className }) => {
+    return className === 'arrow-prev' ? <ArrowPrev /> : <ArrowNext />;
+};
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -40,7 +42,8 @@ const useStyles = makeStyles(theme => ({
         color: 'black'
     },
     inputRoot: {
-        color: 'inherit'
+        color: 'inherit',
+        width: '100%'
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 7),
@@ -64,12 +67,11 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: 'auto'
-        }
+        },
+        cursor: 'text'
     },
     paper: {
         padding: theme.spacing(2),
-        textAlign: 'center',
-        cursor: 'pointer',
         userSelect: 'none'
     }
 }));
@@ -91,7 +93,8 @@ function Books(props) {
             img:
                 'https://images.unsplash.com/photo-1580093969189-38893b9de487?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
             title: 'Image',
-            author: 'author'
+            author: 'author',
+            source: AnotherPDF
         },
         {
             img:
@@ -120,24 +123,7 @@ function Books(props) {
     ]);
 
     const [searchText, setSearchText] = React.useState('');
-    const [displayData, setDisplayData] = React.useState([]);
-    const [viewBook, setViewBook] = React.useState(false);
-    const [selectedBook, setSelectedBook] = React.useState();
-
-    const handleViewBook = book => {
-        setViewBook(true);
-        setSelectedBook(book);
-    };
-
-    const handleCloseViewBook = () => {
-        setViewBook(false);
-        setSelectedBook(null);
-    };
-
-    const handleOpenPDF = source => {
-        console.log(source);
-        window.open(source);
-    };
+    const [displayData, setDisplayData] = React.useState([...bookData]);
 
     const handleSearch = event => {
         setSearchText(event.target.value);
@@ -153,9 +139,8 @@ function Books(props) {
         setDisplayData([...newOwner]);
     };
 
-    useEffect(() => {
-        setDisplayData([...bookData]);
-    }, [bookData]);
+    const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
+    const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
 
     return (
         <Paper className={classes.paper}>
@@ -174,16 +159,18 @@ function Books(props) {
                     onChange={event => handleSearch(event)}
                 />
             </div>
-
-            <BooksList books={displayData} />
-
-            {viewBook && (
-                <DetailBook
-                    open={viewBook}
-                    handleClose={handleCloseViewBook}
-                    item={selectedBook}
-                />
-            )}
+            <ScrollMenu
+                data={displayData.map(book => (
+                    <BookItem book={book} key={book.img} />
+                ))}
+                arrowLeft={ArrowLeft}
+                arrowRight={ArrowRight}
+                alignCenter={false}
+                hideSingleArrow={true}
+                alignOnResize={true}
+                selected={displayData[0].img}
+                scrollToSelected={true}
+            />
         </Paper>
     );
 }

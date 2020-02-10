@@ -7,7 +7,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import AddPopUp from './AddPopUp';
-import CrossIcon from '@material-ui/icons/Cancel';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import InfoIcon from '@material-ui/icons/Info';
@@ -83,7 +82,6 @@ const useStyles = makeStyles(theme => ({
 
 function Owners() {
     const classes = useStyles();
-    const theme = useTheme();
 
     const [Open, setOpen] = React.useState(false);
     const [searchText, setSearchText] = React.useState('');

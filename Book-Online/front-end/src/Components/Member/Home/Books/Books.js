@@ -1,30 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Button from '@material-ui/core/Button';
-import CrossIcon from '@material-ui/icons/Cancel';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import InfoIcon from '@material-ui/icons/Info';
-
+import withWidth from '@material-ui/core/withWidth';
+import Paper from '@material-ui/core/Paper';
 import PDFUrl from '../../../../Assets/Files/sample.pdf';
-import BookImage from '../../../../Assets/Images/Harry_Potter.jpg';
+import BookImage from '../../../../Assets/Images/halt-blood-prince.jpg';
+import AnotherPDF from '../../../../Assets/Files/WPF.pdf';
+import BookItem from './BookItem/BookItem';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+import './Books.css';
+import ArrowNext from '@material-ui/icons/ArrowForwardIos';
+import ArrowPrev from '@material-ui/icons/ArrowBackIos';
+import { Typography } from '@material-ui/core';
+
+const Arrow = ({ text, className }) => {
+    return className === 'arrow-prev' ? <ArrowPrev /> : <ArrowNext />;
+};
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-        cursor: 'text'
-    },
-    gridList: {
-        width: '100%',
-        height: 740
-    },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)'
     },
@@ -49,7 +43,8 @@ const useStyles = makeStyles(theme => ({
         color: 'black'
     },
     inputRoot: {
-        color: 'inherit'
+        color: 'inherit',
+        width: '100%'
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 7),
@@ -73,11 +68,20 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: 'auto'
-        }
+        },
+        cursor: 'text'
+    },
+    paper: {
+        padding: theme.spacing(2),
+        userSelect: 'none'
+    },
+    title: {
+        textAlign: 'center',
+        margin: theme.spacing(1)
     }
 }));
 
-function Books() {
+function Books(props) {
     const classes = useStyles();
 
     const [bookData, setBookData] = React.useState([
@@ -94,7 +98,8 @@ function Books() {
             img:
                 'https://images.unsplash.com/photo-1580093969189-38893b9de487?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60',
             title: 'Image',
-            author: 'author'
+            author: 'author',
+            source: AnotherPDF
         },
         {
             img:
@@ -123,12 +128,7 @@ function Books() {
     ]);
 
     const [searchText, setSearchText] = React.useState('');
-    const [displayData, setDisplayData] = React.useState([]);
-
-    const handleOpenPDF = source => {
-        console.log(source);
-        window.open(source);
-    };
+    const [displayData, setDisplayData] = React.useState([...bookData]);
 
     const handleSearch = event => {
         setSearchText(event.target.value);
@@ -142,19 +142,16 @@ function Books() {
                     .includes(event.target.value.toLocaleLowerCase())
         );
         setDisplayData([...newOwner]);
-        console.log('newOwner', newOwner);
     };
 
-    useEffect(() => {
-        setDisplayData([...bookData]);
-        console.log('OwnerList', bookData);
-    }, [bookData]);
+    const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
+    const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
 
-    useEffect(() => {
-        console.log('display', displayData);
-    }, [displayData]);
     return (
-        <div className={classes.root}>
+        <Paper className={classes.paper}>
+            <Typography variant='h5' className={classes.title}>
+                {props.title}
+            </Typography>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -170,39 +167,24 @@ function Books() {
                     onChange={event => handleSearch(event)}
                 />
             </div>
-            <GridList cellHeight={180} cols={5} className={classes.gridList}>
-                {displayData.map(tile => (
-                    <GridListTile key={tile.img} rows={2}>
-                        <img src={tile.img} alt={tile.title} />
-                        <CrossIcon />
-                        <GridListTileBar
-                            title={tile.title}
-                            subtitle={<span>by: {tile.author}</span>}
-                            actionIcon={
-                                <Button
-                                    aria-label={`info about ${tile.title}`}
-                                    className={classes.icon}
-                                    color='secondary'
-                                    onClick={() => handleOpenPDF(tile.source)}
-                                >
-                                    Read
-                                </Button>
-                            }
-                        />
-                        <GridListTileBar
-                            titlePosition='top'
-                            className={classes.titleBar}
-                            actionIcon={
-                                <div className={classes.actionTool}>
-                                    <InfoIcon />
-                                </div>
-                            }
-                        />
-                    </GridListTile>
-                ))}
-            </GridList>
-        </div>
+            {displayData && displayData.length ? (
+                <ScrollMenu
+                    data={displayData.map(book => (
+                        <BookItem book={book} key={book.img} />
+                    ))}
+                    arrowLeft={ArrowLeft}
+                    arrowRight={ArrowRight}
+                    alignCenter={false}
+                    hideSingleArrow={true}
+                    alignOnResize={true}
+                    selected={displayData[0].img}
+                    scrollToSelected={true}
+                />
+            ) : (
+                <div>Not Found</div>
+            )}
+        </Paper>
     );
 }
 
-export default Books;
+export default withWidth()(Books);

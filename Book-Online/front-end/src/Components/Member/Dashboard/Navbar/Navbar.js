@@ -10,12 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
 import { useHistory } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     grow: {
-        // flexGrow: 1
+        flexGrow: 1
     },
     Toolbar: {
         backgroundColor: '#212121'
@@ -144,6 +145,8 @@ export default function Navbar(props) {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
+                    <div className={classes.grow} />
+                    <Button color='primary'>Login</Button>
                 </Toolbar>
             </AppBar>
         </div>

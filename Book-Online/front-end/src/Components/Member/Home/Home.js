@@ -30,9 +30,12 @@ function Home() {
                 <Grid item xs={6}>
                     <Paper
                         className={classes.paper}
-                        style={{ backgroundColor: '#673ab7', color: 'white' }}
+                        style={{ backgroundColor: '#9c27b0', color: 'white' }}
+                        onClick={() => {
+                            history.push('/Member/MyBooks');
+                        }}
                     >
-                        Your Books
+                        My Books
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
@@ -47,9 +50,13 @@ function Home() {
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <Books />
-                    </Paper>
+                    <Books title='Advanture' />
+                </Grid>
+                <Grid item xs={12}>
+                    <Books title='Love' />
+                </Grid>
+                <Grid item xs={12}>
+                    <Books title='Comedy' />
                 </Grid>
             </Grid>
         </div>
