@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('first_name');
@@ -21,9 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedInteger('admin_id');
+            $table->unsignedBigInteger('admin_id');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('admin_id')->references('id')
+                ->on('admins')
+                ->onDelete('cascade');
         });
     }
 

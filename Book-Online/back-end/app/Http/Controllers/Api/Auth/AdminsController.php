@@ -54,6 +54,7 @@ class AdminsController extends Controller
 
     public function getUsers()
     {
+        $users = User::find(1);
         return response()->json(['users' => User::all()]);
     }
 }

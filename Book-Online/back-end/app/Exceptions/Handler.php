@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
     {
         if(!$request->expectsJson())
         {
-            return response()->json(['error'=> 'Unauthorizedbbbb'],401);
+            return response()->json(['error'=> 'Unauthorized'],401);
         }
     }
 }
