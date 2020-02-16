@@ -14,6 +14,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -58,9 +60,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function LoginCard(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     const [values, setValues] = React.useState({
         amount: '',
+        username: '',
         password: '',
         weight: '',
         weightRange: '',
@@ -79,8 +83,27 @@ export default function LoginCard(props) {
         event.preventDefault();
     };
 
+    const handleAdminLogin = () => {
+        props.setLoading(true);
+        axios.post('http://localhost:8000/api/login',{
+            username: values.username,
+            password: values.password
+        }).then(response=> {
+            props.setLoading(false);
+            if(response.status === 200) {
+                history.push('/admin/home');
+            }
+            console.log(response);
+        }).catch(error=> {
+            props.setLoading(false);
+            console.log(error.response.data.error);
+        })
+    }
+
     return (
-        <Card className={classes.card} variant='outlined'>
+        <Card className={classes.card} variant='outlined' onKeyDown={event => {
+            if(event.key === 'Enter') handleAdminLogin();
+        }}>
             <CardContent className={classes.cardContent}>
                 <Typography variant='h4' className={classes.cardHeader}>
                     Login
@@ -96,6 +119,8 @@ export default function LoginCard(props) {
                     label='Username'
                     autoFocus
                     autoComplete='off'
+                    value={values.username}
+                    onChange={handleChange('username')}
                     inputProps={{
                         className: classes.input
                     }}
@@ -143,7 +168,7 @@ export default function LoginCard(props) {
                 </FormControl>
             </CardContent>
             <CardActions>
-                <Button size='small' color='secondary'>
+                <Button size='small' color='secondary' onClick={handleAdminLogin}>
                     Login
                 </Button>
             </CardActions>
