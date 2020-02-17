@@ -1,25 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Admin from './Components/Admin/Authentication/Authentication';
 import Dashboard from './Components/Admin/Dashboard/Dashboard';
 import DashboardMember from './Components/Member/Dashboard/Dashboard';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Components/Admin/Home/Home';
-import Member from './Components/Admin/Member/Member';
+import Member from './Components/Admin/Home/Member/Member';
 import MemberPage from './Components/Member/Home/Home';
 import MemberList from './Components/Member/Member/Member';
 import MyBooks from './Components/Member/Home/MyBooks/MyBooks';
+import Notifications from './Components/Admin/Home/ApproveList/Approve';
 
 const routing = (
     <Router>
-        <Dashboard path='/Admin/Home' component={Home} />
-        <Dashboard path='/Admin/Member' component={Member} />
-        <DashboardMember path='/Member/Home' component={MemberPage} />
-        <DashboardMember path='/Member/Member' component={MemberList} />
-        <DashboardMember path='/Member/MyBooks' component={MyBooks} />
-        <Route exact path='/' component={Admin} />
+        <Switch>
+            <Dashboard
+                path='/Admin/Home/Notifications'
+                component={Notifications}
+            />
+            <Dashboard path='/Admin/Home/Member' component={Member} />
+            <Dashboard path='/Admin/Home' component={Home} />
+            <Route path='/Admin' component={Admin} />
+            <DashboardMember path='/' component={MemberPage} />
+            <DashboardMember path='/Member/Member' component={MemberList} />
+            <DashboardMember path='/Member/MyBooks' component={MyBooks} />
+        </Switch>
     </Router>
 );
 

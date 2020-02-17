@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginCard from './LoginCard/LoginCard';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
     bgImg: {
@@ -29,17 +30,30 @@ const useStyles = makeStyles(theme => ({
         left: '50%',
         transform: 'translate(-50%,-50%)',
         zIndex: 100
+    },
+    loading: {
+        position: 'absolute',
+        top: '70%',
+        left: '50%',
+        transform: 'translate(-50%,-50%)',
     }
 }));
 
 function Authentication() {
     const classes = useStyles();
+    const [loading,setLoading] = React.useState(false);
+
+    adfasd
+
     return (
         <div>
             <div className={classes.bgImg}></div>
             <div className={classes.card}>
-                <LoginCard />
+                <LoginCard setLoading={setLoading}/>
             </div>
+            {loading ? 
+                <div className={classes.loading}> <CircularProgress disableShrink /> </div>
+            : null}
         </div>
     );
 }

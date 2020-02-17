@@ -12,6 +12,7 @@ import ScrollMenu from 'react-horizontal-scrolling-menu';
 import './Books.css';
 import ArrowNext from '@material-ui/icons/ArrowForwardIos';
 import ArrowPrev from '@material-ui/icons/ArrowBackIos';
+import { Typography } from '@material-ui/core';
 
 const Arrow = ({ text, className }) => {
     return className === 'arrow-prev' ? <ArrowPrev /> : <ArrowNext />;
@@ -73,6 +74,10 @@ const useStyles = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(2),
         userSelect: 'none'
+    },
+    title: {
+        textAlign: 'center',
+        margin: theme.spacing(1)
     }
 }));
 
@@ -144,6 +149,9 @@ function Books(props) {
 
     return (
         <Paper className={classes.paper}>
+            <Typography variant='h5' className={classes.title}>
+                {props.title}
+            </Typography>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -159,18 +167,22 @@ function Books(props) {
                     onChange={event => handleSearch(event)}
                 />
             </div>
-            <ScrollMenu
-                data={displayData.map(book => (
-                    <BookItem book={book} key={book.img} />
-                ))}
-                arrowLeft={ArrowLeft}
-                arrowRight={ArrowRight}
-                alignCenter={false}
-                hideSingleArrow={true}
-                alignOnResize={true}
-                selected={displayData[0].img}
-                scrollToSelected={true}
-            />
+            {displayData && displayData.length ? (
+                <ScrollMenu
+                    data={displayData.map(book => (
+                        <BookItem book={book} key={book.img} />
+                    ))}
+                    arrowLeft={ArrowLeft}
+                    arrowRight={ArrowRight}
+                    alignCenter={false}
+                    hideSingleArrow={true}
+                    alignOnResize={true}
+                    selected={displayData[0].img}
+                    scrollToSelected={true}
+                />
+            ) : (
+                <div>Not Found</div>
+            )}
         </Paper>
     );
 }

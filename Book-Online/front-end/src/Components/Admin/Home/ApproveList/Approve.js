@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Typography from '@material-ui/core/Typography';
-import { ListItemIcon, Button } from '@material-ui/core';
+import { ListItemIcon, Button, Grid } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DetailItem from './DetailItem';
@@ -27,11 +27,21 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 180,
         marginRight: theme.spacing(2),
         cursor: 'pointer'
+    },
+    grow: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        cursor: 'pointer',
+        userSelect: 'none'
     }
 }));
 
 export default function AlignItemsList() {
     const classes = useStyles();
+
     const [openMore, setMore] = React.useState(false);
     const [selectedItem, setSelectedItem] = React.useState();
 
@@ -56,7 +66,7 @@ export default function AlignItemsList() {
     };
 
     return (
-        <React.Fragment>
+        <Grid xs={12}>
             <List className={classes.root}>
                 <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
@@ -401,6 +411,6 @@ export default function AlignItemsList() {
                     item={selectedItem}
                 />
             )}
-        </React.Fragment>
+        </Grid>
     );
 }

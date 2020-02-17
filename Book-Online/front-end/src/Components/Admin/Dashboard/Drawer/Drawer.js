@@ -26,6 +26,9 @@ import LockOpen from '@material-ui/icons/LockOpen';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import InfoIcon from '@material-ui/icons/Info';
 import ProfileDetail from './ProfileDetail';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -91,12 +94,23 @@ const useStyles = makeStyles(theme => ({
     },
     nested: {
         paddingLeft: theme.spacing(9)
+    },
+    grow: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        cursor: 'pointer',
+        userSelect: 'none'
     }
 }));
 
 export default function MiniDrawer(props) {
     const classes = useStyles();
     const theme = useTheme();
+    const history = useHistory();
+
     const [open, setOpen] = React.useState(true);
 
     const [openCategory, setOpenCategory] = React.useState(true);
@@ -287,7 +301,47 @@ export default function MiniDrawer(props) {
             </Drawer>
             <div className={classes.content}>
                 <div className={classes.toolbar} />
-                {props.children}
+                <div className={classes.grow}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <Paper
+                                className={classes.paper}
+                                style={{
+                                    backgroundColor: '#673ab7',
+                                    color: 'white'
+                                }}
+                            >
+                                Administrators
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Paper
+                                className={classes.paper}
+                                style={{ backgroundColor: '#ffd740' }}
+                                onClick={() => {
+                                    history.push('/Admin/Home/Member');
+                                }}
+                            >
+                                Members
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Paper
+                                className={classes.paper}
+                                style={{
+                                    backgroundColor: '#c62828',
+                                    color: 'white'
+                                }}
+                                onClick={() => {
+                                    history.push('/Admin/Home/Notifications');
+                                }}
+                            >
+                                Notifications
+                            </Paper>
+                        </Grid>
+                        {props.children}
+                    </Grid>
+                </div>
             </div>
             {viewProfile && (
                 <ProfileDetail
