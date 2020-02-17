@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'id','first_name','last_name','username','email', 'password','admin_id'
+        'first_name','last_name','username','email', 'password','admin_id'
     ];
 
     /**
@@ -47,8 +47,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function Admins()
+    public function Admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+
+    public function TmpBooks()
+    {
+        return $this->hasMany(TmpBook::class);
     }
 }

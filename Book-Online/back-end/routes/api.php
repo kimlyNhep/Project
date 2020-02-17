@@ -14,13 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/admin/login','Api\Auth\Adminscontroller@login');
-Route::post('admin/register','Api\Auth\Adminscontroller@register');
+Route::post('/admin/register','Api\Auth\Adminscontroller@register');
 
-Route::post('user/login','Api\Auth\Userscontroller@login');
-Route::post('user/register','Api\Auth\Userscontroller@register');
+Route::post('/user/login','Api\Auth\Userscontroller@login');
 
 Route::group(['middleware' => 'auth:admin_api'],function ()
 {
-	Route::get('/users','Api\Auth\Adminscontroller@getUsers');
+    Route::get('/admin/users','Api\Auth\Adminscontroller@getUsers');
+    Route::get('/admin/info','Api\Auth\Adminscontroller@info');
+    Route::post('/admin/addMember','Api\Auth\Adminscontroller@addMember');
+    Route::post('/admin/Update','Api\Auth\Adminscontroller@updateInfo');
 });
 
+Route::group(['middleware' => 'auth:api'],function ()
+{
+    Route::post('/user/addBook','Api\Auth\UsersController@addBooks');
+    Route::get('/user/books','Api\Auth\UsersController@getBooks');
+    Route::get('/user/upload','Api\Auth\UsersController@uploadImage');
+});

@@ -18,17 +18,13 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('username');
-            $table->string('email')->unique();
+            $table->string('username')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('admin_id');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('admin_id')->references('id')
-                ->on('admins')
-                ->onDelete('cascade');
         });
     }
 
