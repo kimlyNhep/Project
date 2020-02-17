@@ -85,7 +85,7 @@ export default function LoginCard(props) {
 
     const handleAdminLogin = () => {
         props.setLoading(true);
-        axios.post('http://localhost:8000/api/login',{
+        axios.post('http://localhost:8000/api/admin/login',{
             username: values.username,
             password: values.password
         }).then(response=> {

@@ -43,8 +43,6 @@ function Authentication() {
     const classes = useStyles();
     const [loading,setLoading] = React.useState(false);
 
-    adfasd
-
     return (
         <div>
             <div className={classes.bgImg}></div>
