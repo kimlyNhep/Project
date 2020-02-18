@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\TmpBook;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -22,33 +23,51 @@ class UsersController extends Controller
         else return response()->json(['user_token'=> $token]);
     }
 
-    public function register(Request $request)
+    public function addBooks(Request $request)
     {
         $validator = Validator::make($request->all(),
         [
-            'first_name' => 'required|string|min:4|max:20',
-            'last_name'=> 'required|string|min:4|max:20',
-            'username'=> 'required|string|min:4|max:20',
-            'email'=> 'required|string|email|max:20|unique:users',
-            'password'=> 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required|string|min:6',
+            'title' => 'required|string|min:4|max:50',
+            'author'=> 'required|string|min:4|max:20',
+            'pages'=> 'required|numeric',
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $user = User::create([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'username' => $request->get('username'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password_confirmation')),
-            'admin_id' => $request->get('admin_id')
+        $book = TmpBook::create([
+            'title' => $request->get('title'),
+            'author' => $request->get('author'),
+            'genre_id' => $request->get('genre_id'),
+            'pages' => $request->get('pages'),
+            'user_id' => $request->get('user_id')
         ]);
 
-        $token = auth('api')->login($user);
+        return response()->json(['book' => $book],200);
+    }
 
-        return response()->json(['user_token'=> $token],201);
+    public function getBooks()
+    {
+        $books = User::find(1)->TmpBooks;
+        return response()->json(['books' => $books],200);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+        [
+            'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        if($files = $request->file('fileUpload')) {
+            $destinationPath = public_path('front-end\src\Assets\Images'); // upload path
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+        }
     }
 }
