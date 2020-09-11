@@ -4,7 +4,7 @@
   "description": "Leading page for Lkhon Khmer",
   "main": "index.js",
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.13.1"
   },
   "author": "kimly nhep",
   "license": "ISC",
